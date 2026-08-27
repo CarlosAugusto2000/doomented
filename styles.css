@@ -13,7 +13,7 @@ body {
 .gif {
     width: 100%;
     min-height: 400px;
-    background-image: url('gif/200w.gif');
+    background-image: url('/gif/200w.gif');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
