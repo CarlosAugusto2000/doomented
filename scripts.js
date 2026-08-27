@@ -1,10 +1,25 @@
-const audio = new Audio('music/schizo.mp3');
-const title= document.getElementById('title');
+const audioTitle = new Audio('music/schizo.mp3');
+const audioText = new Audio('music/quake.mp3'); // Substitua pelo caminho da sua nova música
+
+const title = document.getElementById('title');
+const welcomeText = document.getElementById('welcome-text');
+
 title.addEventListener('click', () => {
-    if (audio.paused) {
-        audio.play();
+    if (!audioText.paused) {
+        audioText.pause();
     } else {
-        audio.pause();
+        audioTitle.pause();
+    }
+});
+
+welcomeText.addEventListener('click', () => {
+    if (!audioTitle.paused) {
+        audioTitle.pause();
+    }
+    if (audioText.paused) {
+        audioText.play();
+    } else {
+        audioText.pause();
     }
 });
 
