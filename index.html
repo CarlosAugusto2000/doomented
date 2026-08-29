@@ -1,47 +1,43 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Doomented</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap')
+    </style>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<nav class="top-nav">
-        <ul>
-            <li><a href="#welcome-section">Sobre mim</a></li>
-            <li><a href="#welcome-section">Nossa Proposta</a></li>
-            <li><a href="#welcome-section">O que você busca por aqui?</a></li>
-        </ul>
-    </nav>
-    <div class="naoki">
-        <h3>Páginas amigas de Eidolon</h3>
-        <ul>
-            <li>
-                <a href="https://naoki321.neocities.org" target="_blank" rel="noopener noreferrer">Naoki</a>
-            </li>
-        </ul>
-    </div>
-    <section class="hero-section">
-    <h1 id="title">Greetings Mortal!</h1>
-    </section>
-    <section id="welcome-section" class="gif">
-        <p id="welcome-text">Bem-vindo a minha página, meu nome é Doomented. Aqui você encontrará o que há de melhor, e de pior. Contradições, insanidade e tudo que há de bom ou de ruim. Nada é por acaso, nada é ilegal e tudo é permitido. Coloque em sua mente que há de ser tudo da lei. Nossa filosofia é simples, negar nossos impulsos é negar aquilo que nos torna humanos.</p>
-    </section>
-    <section class="comments-section">
-        <h2>Deixe seu comentário,servo de Eidolon!</h2>
-        <form id="comment-form">
-            <div class="input-group">
-                <label for="username">Nome de Usuário:</label>
-                <input type="text" id="username" placeholder="Digite o seu nome" required>
-            </div>
-          <div class="input-group">
-            <label for="message">Mensagem:</label>
-            <textarea id="message" rows="4" placeholder="Escreva sua mensagem aqui." required></textarea>
-          </div>
-          <button type="submit">Enviar</button>
-        </form>
-    </section>
     <script src="scripts.js"></script>
+   <div class="container">
+        <header>
+            <h1>Doomented</h1>
+        </header>
+        <div class="main-layout">            
+            <aside class="sidebar-left">
+                <h2>Sobre</h2>
+                <ul>
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#">Projetos</a></li>
+                    <li><a href="#">Galeria</a></li>
+                    <li><a href="#">Arquivo</a></li>
+                </ul>
+            </aside>
+            <main>
+                <article class="post">
+                    <h2>Greetings mortal!</h2>
+                    <div class="date">29/08/2026</div>
+                    <p>Bem-vindo a minha página, meu nome é Doomented. Aqui você encontrará o que há de melhor, e de pior. Contradições, insanidade e tudo que há de bom ou de ruim. Nada é por acaso, nada é ilegal e tudo é permitido. Coloque em sua mente que há de ser tudo da lei. Nossa filosofia é simples, negar nossos impulsos é negar aquilo que nos torna humanos.</p>
+                </article>
+            </main>
+            <aside class="sidebar-right">
+                <h2>Links</h2>
+                <p>https://doomented.vercel.app/</p>
+            </aside>
+        </div>
+    </div>
 </body>
 </html>
