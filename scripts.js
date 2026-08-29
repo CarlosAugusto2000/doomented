@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const titulo = document.querySelector('header h1');
-    const musica = new Audio('/vinumsabbathi.mp3');
+    const musica = new Audio('music/vinumsabbathi.mp3');
     titulo.addEventListener('click', () => {
         musica.currentTime = 0;
         musica.play().catch(error => {
