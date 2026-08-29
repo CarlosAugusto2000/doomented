@@ -1,192 +1,100 @@
-html {
-    scroll-behavior: smooth;
-}
+* {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-body {
-    background-image: url('img/hexen.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    padding: 0;
-}
+        body {
+           
+            background: url('gif/200w.gif') no-repeat center center fixed;
+            background-size: cover;
+            color: #d1c7c7;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px 0;
+        }
 
-.top-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    padding: 15px 0;
-    z-index: 999;
-    border-bottom: 1px solid red;
-}
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
-.top-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-}
+        header {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #400;
+        }
 
-.top-nav a {
-    color: red;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1rem;
-    transition: color 0.2s;
-}
+        header h1 {
+            font-family: 'MedievalSharp';
+            font-size: 2.5rem;
+            color: #8b0000;
+            text-shadow: 2px 2px 5px #000;
+        }
 
-.top-nav a:hover {
-    color: white;
-    text-shadow: 0 0 5px red;
-}
+        .main-layout {
+            display: grid;
+            grid-template-columns: 180px 1fr 200px;
+            gap: 15px;
+        }
 
-.gif {
-    width: 100%;
-    min-height: 400px;
-    background-image: url('gif/200w.gif');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 20px;
-    box-sizing: border-box;
-}
+        aside, main {
+            background-color: rgba(10, 10, 10, 0.85); 
+            border: 1px solid #330000;
+            padding: 15px;
+            border-radius: 4px;
+        }
 
-.gif p {
-    color: white;
-    font-size: 1.1rem;
-    text-align: center;
-    max-width: 700px;
-    margin: 0;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 15 25px;
-    border-radius: 8px;
-    cursor: pointer;
-}
+        .sidebar-left h2, .sidebar-right h2 {
+            font-family: 'MedievalSharp', cursive;
+            color: #8b0000;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
 
+        .sidebar-left ul {
+            list-style: none;
+        }
 
+        .sidebar-left ul li a {
+            color: #a89f9f;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
 
-.naoki {
+        .sidebar-left ul li a:hover {
+            color: #ff3333;
+        }
+
+        .post {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            border: 1px solid #222;
+        }
+
+        .post h2 {
+            font-family: 'MedievalSharp', cursive;
+            color: #e6e6e6;
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .post .date {
+            font-size: 0.75rem;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .post p {
+            line-height: 1.5;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
  
-position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: purple;
-    color: black;
-    padding: 12px 18px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    max-width: 200px;
-}
-
-.naoki h3 {
-    margin: 0 0 8px 0;
-    font-size: 0.9rem;
-    font-weight: bold;
-    color: black;
-    text-align: center;
-}
-
-.naoki ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    text-align: center;
-}
-
-.naoki a {
-    color: red;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.naoki a:hover {
-    text-decoration: underline;
-}
-
-.hero-section{
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-h1 {
-    color: red;
-    text-align: center;
-    cursor: pointer;
-    font-size: 3rem;
-    text-shadow: 2px 2px 10px black;
-}
-
-.comments-section {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-    padding: 20px;
-}
-
-.comments-section h2 {
-    color: red;
-    margin-bottom: 20px;
-}
-
-#comment-form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 400px;
-    gap: 15px;
-    background-color: #111;
-    padding: 25px;
-    border-radius: 8px;
-    border: 1px solid red;
-}
-
-.input-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.input-group label {
-    margin-bottom: 5px;
-}
-
-.input-group input,
-.input-group textarea {
-    padding: 10px;
-    border: 1px solid red;
-    background-color: #222;
-    color: white;
-    border-radius: 4px;
-}
-
-button {
-    padding: 10px;
-    background-color: black;
-    color: red;
-    border: 1px solid red;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 4px;
-    transition: background-color 0.2s, color 0.2s;
-}
-
-button:hover {
-    background-color: red;
-    color: black;
-}
