@@ -75,6 +75,16 @@ aside, main {
     border-radius: 4px;
 }
 
+.sidebar-right a {
+    color: #a89f9f;
+    text-decoration: underline;
+    word-break: break-all;
+}
+
+.sidebar-right a:hover {
+    color: #ff3333;
+}
+
 .sidebar-left h2, .sidebar-right h2 {
     font-family: 'MedievalSharp', cursive;
     color: #8b0000;
