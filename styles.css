@@ -47,8 +47,23 @@ body {
     width: 90%;
     max-width: 1100px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     gap: 20px;
+}
+
+.second-section .container {
+    width: 100%;
+    max-width: 1100px;
+}
+
+.full-box {
+    background-color: #0a0a0a;
+    border: 1px solid #8b0000;
+    padding: 25px;
+    border-radius: 4px;
+    width: 100%;
+    min-height: 70vh;
+    box-sizing: border-box;
 }
 
 
