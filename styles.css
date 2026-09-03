@@ -81,6 +81,9 @@ header h1 {
     text-shadow: 2px 2px 5px #000;
 }
 
+header h1, .full-box {
+    cursor: pointer;
+}
 .main-layout {
     display: grid;
     grid-template-columns: 180px 1fr 200px;
