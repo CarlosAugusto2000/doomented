@@ -7,7 +7,7 @@
 }
 
 html {
-    scroll-behavior: smooth; 
+    scroll-behavior: smooth;
 }
 
 body {
@@ -16,9 +16,27 @@ body {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    background-attachment: fixed; 
-    color: #b0b0b0;
+    background-attachment: fixed;
+    color: #cccccc;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 950px;
+    margin: 0 auto;
 }
 
 .hero-section {
@@ -31,77 +49,78 @@ body {
     padding: 40px 20px;
 }
 
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: transparent; 
-    z-index: 1;
-}
-
-.container {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 1000px;
-}
-
-
 .main-header {
-    background: transparent; 
-    border: none;             
+    background: rgba(12, 12, 12, 0.90);
+    border: none;
     text-align: center;
-    padding: 15px;
-    margin-bottom: 20px;
-    box-shadow: none;         
+    padding: 16px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
 }
+
 .main-header h1 {
     font-family: 'MedievalSharp', cursive;
-    color: #cc0000;
-    font-size: 2.2rem;
+    color: #d11a1a;
+    font-size: 2.3rem;
     letter-spacing: 2px;
-    text-shadow: 2px 2px 4px #000;
+    font-weight: normal;
 }
 
 .content-grid {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
+    display: flex;
+    gap: 15px; 
+    align-items: stretch;
 }
+
 
 .card {
-    display: table-cell;
-    vertical-align: top;
-    background: transparent; 
-    border: none;            
-    padding: 20px;
-    box-shadow: none;        
+    background: rgba(12, 12, 12, 0.88);
+    padding: 22px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
 }
 
-.sidebar-left {
-    width: 22%;
+.sidebar-left, 
+.sidebar-right {
+    flex: 1; 
+    border: none;
 }
 
 .main-content {
-    width: 56%;
-}
-
-.sidebar-right {
-    width: 22%;
-}
-
-.sidebar-left, .main-content {
-    border-right: 15px solid transparent;
-    background-clip: padding-box;
+    flex: 2.5; 
+    background: rgba(8, 8, 8, 0.92);
+    border: 1px solid #222222;
+    outline: 1px solid #111111;
+    outline-offset: -3px;
 }
 
 h2 {
     font-family: 'MedievalSharp', cursive;
-    color: #cc0000;
+    color: #d11a1a;
     font-size: 1.3rem;
     margin-bottom: 12px;
+    font-weight: normal;
+}
+
+.main-content h2 {
+    font-family: Arial, Helvetica, sans-serif; 
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 1.15rem;
+    margin-bottom: 4px;
+}
+
+.main-content .date {
+    display: block;
+    font-size: 0.7rem;
+    color: #666666;
+    margin-bottom: 16px;
+}
+
+.main-content p {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: #aaaaaa;
+    text-align: justify;
 }
 
 .sidebar-left ul {
@@ -113,79 +132,51 @@ h2 {
 }
 
 .sidebar-left a {
-    color: #888;
+    color: #888888;
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     transition: color 0.2s;
 }
 
 .sidebar-left a:hover {
-    color: #ff3333;
-}
-
-.main-content .date {
-    display: block;
-    font-size: 0.75rem;
-    color: #555;
-    margin-top: -8px;
-    margin-bottom: 15px;
-}
-
-.main-content p {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: #ccc;
-    text-align: justify;
+    color: #ffffff;
 }
 
 .sidebar-right a {
-    color: #888;
-    font-size: 0.85rem;
+    color: #888888;
+    font-size: 0.8rem;
     word-break: break-all;
     text-decoration: none;
 }
 
 .sidebar-right a:hover {
-    color: #ff3333;
+    color: #ffffff;
     text-decoration: underline;
 }
+
 .second-section {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    background: transparent; 
+    background: transparent;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 40px 20px;
-    border-top: 2px solid #220000;
+    border-top: 1px solid rgba(255, 0, 0, 0.2);
 }
 
 .second-content {
-    display: block;
     width: 100%;
     text-align: center;
+    background: rgba(12, 12, 12, 0.92);
+    border: 1px solid #222222;
 }
 
 @media (max-width: 768px) {
-    .hero-section, 
-    .second-section {
-        padding: 20px 10px;
-    }
-
     .content-grid {
-        display: flex;
         flex-direction: column;
         gap: 15px;
-    }
-
-    .card,
-    .sidebar-left,
-    .main-content,
-    .sidebar-right {
-        display: block;
-        width: 100%;
-        border-right: none;
     }
 
     .sidebar-left nav ul {
@@ -194,10 +185,5 @@ h2 {
         flex-wrap: wrap;
         gap: 10px;
     }
-
-    .sidebar-left li {
-        margin-bottom: 0;
-    }
 }
-
 
