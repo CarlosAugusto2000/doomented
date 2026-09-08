@@ -49,15 +49,21 @@ body {
     padding: 30px 10px;
 }
 .main-header {
-    background: transparent; 
-    box-shadow: none;        
+    background: rgba(12, 12, 12, 0.90);
     border: none;
-    padding: 10px 0;
-    margin-bottom: 20px;
+    padding: 16px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
     display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+    justify-content: center; 
+    align-items: center;     
+    gap: 20px;               
+}
+
+.header-gif {
+    width: 35px;            
+    height: auto;
+    display: block;
 }
 .main-header h1 {
     font-family: 'MedievalSharp', cursive;
