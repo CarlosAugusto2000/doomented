@@ -72,19 +72,6 @@ body {
     align-items: stretch;
 }
 
-.post-image {
-    width: calc(100% + 44px);   
-    margin-left: -22px;         
-    margin-right: -22px;        
-    max-width: none;            
-    height: auto;
-    display: block;
-    margin-top: 15px;
-    border-top: 1px solid #1a1a1a;    
-    border-bottom: 1px solid #1a1a1a;
-}
-
-
 .card {
     background: rgba(12, 12, 12, 0.88);
     padding: 22px;
@@ -98,20 +85,26 @@ body {
 }
 
 .main-content {
-    padding: 0 !important;
+    flex: 2.5;
+    padding: 0 !important; 
+    overflow: hidden; 
+    background: rgba(8, 8, 8, 0.92);
+    border: 1px solid #222222;
 }
 
 .post-text {
-    padding: 22px 22px 0 22px;
+    padding: 22px 22px 15px 22px;
 }
+
 
 .post-image {
     width: 100%;
     height: auto;
     display: block;
-    margin-top: 15px;
+    margin-top: 10px;
     border-top: 1px solid #1a1a1a;
 }
+
 h2 {
     font-family: 'MedievalSharp', cursive;
     color: #d11a1a;
@@ -205,4 +198,3 @@ h2 {
         gap: 10px;
     }
 }
-
