@@ -50,15 +50,15 @@ body {
     padding: 20px 0; 
 }
 .main-header {
-    background: rgba(12, 12, 12, 0.90);
+    background: transparent; 
+    box-shadow: none;        
     border: none;
-    padding: 16px;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    padding: 10px 0;
+    margin-bottom: 20px;
     display: flex;
-    justify-content: center; 
-    align-items: center;    
-    gap: 20px;               
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
 .header-gif {
