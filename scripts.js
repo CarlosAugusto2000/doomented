@@ -1,25 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const titulo = document.querySelector('header h1');
-    const caixaHmm = document.querySelector('.full-box');
-    const musicaTitulo = new Audio('music/vinumsabbathi.mp3');
-    const musicaCaixa = new Audio('music/schizo.mp3');
-    const toggleAudio = (audioAtual, outroAudio) => {
-        if (!outroAudio.paused) {
-            outroAudio.pause();
-            outroAudio.currentTime = 0;
-        }
-        if (audioAtual.paused) {
-            audioAtual.play().catch(error => {
-                console.log('Erro ao tentar tocar o áudio:', error);
-            });
+    const secao1 = document.getElementById('secao1');
+    const secao2 = document.getElementById('secao2');
+
+    const audio1 = document.getElementById('audio1');
+    const audio2 = document.getElementById('audio2');
+    function toggleAudio(targetAudio, otherAudio) {
+        otherAudio.pause();
+        otherAudio.currentTime = 0;
+
+        if (!targetAudio.paused) {
+            targetAudio.pause();
         } else {
-            audioAtual.pause();
+            targetAudio.play().catch(error => {
+                console.log("Erro ao tentar tocar o áudio: ", error);
+            });
         }
-    };
-    titulo.addEventListener('click', () => {
-        toggleAudio(musicaTitulo, musicaCaixa);
+    }
+    function isInteractiveElement(target) {
+        return target.tagName === 'A' || target.tagName === 'BUTTON' || target.closest('a');
+    }
+    secao1.addEventListener('click', (e) => {
+        if (isInteractiveElement(e.target)) return;
+        toggleAudio(audio1, audio2);
     });
-    caixaHmm.addEventListener('click', () => {
-        toggleAudio(musicaCaixa, musicaTitulo);
+    secao2.addEventListener('click', (e) => {
+        if (isInteractiveElement(e.target)) return;
+        toggleAudio(audio2, audio1);
     });
 });
