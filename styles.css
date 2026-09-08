@@ -34,8 +34,8 @@ body {
 .container {
     position: relative;
     z-index: 2;
-    width: 100%;
-    max-width: 950px;
+    width: 96%;
+    max-width: 1300px;
     margin: 0 auto;
 }
 
@@ -46,7 +46,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px 20px;
+    padding: 30px 10px;
 }
 
 .main-header {
@@ -61,7 +61,7 @@ body {
 .main-header h1 {
     font-family: 'MedievalSharp', cursive;
     color: #d11a1a;
-    font-size: 2.3rem;
+    font-size: 2.5rem;
     letter-spacing: 2px;
     font-weight: normal;
 }
@@ -74,20 +74,19 @@ body {
 
 .card {
     background: rgba(12, 12, 12, 0.88);
-    padding: 22px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
 }
 
 .sidebar-left, 
 .sidebar-right {
-    flex: 1; 
+    flex: 0 0 200px; 
+    padding: 22px;
     border: none;
 }
 
 .main-content {
-    flex: 2.5;
-    padding: 0 !important; 
-    overflow: hidden; 
+    flex: 1; 
+    padding: 0 !important;
     background: rgba(8, 8, 8, 0.92);
     border: 1px solid #222222;
 }
@@ -95,7 +94,6 @@ body {
 .post-text {
     padding: 22px 22px 15px 22px;
 }
-
 
 .post-image {
     width: 100%;
@@ -117,53 +115,45 @@ h2 {
     font-family: Arial, Helvetica, sans-serif; 
     font-weight: bold;
     color: #ffffff;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     margin-bottom: 4px;
 }
 
 .main-content .date {
     display: block;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     color: #666666;
     margin-bottom: 16px;
 }
 
 .main-content p {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     line-height: 1.5;
     color: #aaaaaa;
     text-align: justify;
 }
 
-.sidebar-left ul {
+.sidebar-left ul,
+.sidebar-right ul {
     list-style: none;
 }
 
-.sidebar-left li {
+.sidebar-left li,
+.sidebar-right li {
     margin-bottom: 8px;
 }
 
-.sidebar-left a {
+.sidebar-left a,
+.sidebar-right a {
     color: #888888;
     text-decoration: none;
     font-size: 0.9rem;
     transition: color 0.2s;
 }
 
-.sidebar-left a:hover {
-    color: #ffffff;
-}
-
-.sidebar-right a {
-    color: #888888;
-    font-size: 0.8rem;
-    word-break: break-all;
-    text-decoration: none;
-}
-
+.sidebar-left a:hover,
 .sidebar-right a:hover {
     color: #ffffff;
-    text-decoration: underline;
 }
 
 .second-section {
@@ -180,21 +170,20 @@ h2 {
 
 .second-content {
     width: 100%;
+    padding: 30px;
     text-align: center;
     background: rgba(12, 12, 12, 0.92);
     border: 1px solid #222222;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .content-grid {
         flex-direction: column;
         gap: 15px;
     }
 
-    .sidebar-left nav ul {
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-        gap: 10px;
+    .sidebar-left, 
+    .sidebar-right {
+        flex: 1 1 auto;
     }
 }
