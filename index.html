@@ -1,5 +1,6 @@
+
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,49 +8,44 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <script src="scripts.js"></script>
-    <div class="bg-gif"></div>
-    <section class="first-section">
+    <section id="secao1" class="hero-section">
+        <div class="overlay"></div>
         <div class="container">
-            <header>
+            <header class="main-header">
                 <h1>Doomented</h1>
             </header>
-            <div class="main-layout">            
-                <aside class="sidebar-left">
+            <div class="content-grid">
+                <aside class="card sidebar-left">
                     <h2>Sobre</h2>
-                    <ul>
-                        <li><a href="#hmmm-section">Início</a></li>
-                        <li><a href="#">Projetos</a></li>
-                        <li><a href="#">Galeria</a></li>
-                        <li><a href="#">Arquivo</a></li>
-                    </ul>
+                    <nav>
+                        <ul>
+                           <li><a href="#secao2">Início</a></li>
+                            <li><a href="#projetos">Projetos</a></li>
+                            <li><a href="#galeria">Galeria</a></li>
+                            <li><a href="#arquivo">Arquivos</a></li>
+                        </ul>
+                    </nav>
                 </aside>
-                <main>
-                    <article class="post">
-                        <h2>Greetings mortal!</h2>
-                        <div class="date">29/08/2026</div>
-                        <p>Bem-vindo a minha página, meu nome é Doomented. Aqui você encontrará o que há de melhor, e de pior. Contradições, insanidade e tudo que há de bom ou de ruim. Nada é por acaso, nada é ilegal e tudo é permitido. Coloque em sua mente que há de ser tudo da lei. Nossa filosofia é simples, negar nossos impulsos é negar aquilo que nos torna humanos.</p>
-                    </article>
+                <main class="card main-content">
+                    <h2>Greetings mortal!</h2>
+                    <span class="date">07/09/2026</span>
+                    <p>Bem-vindo a minha página, meu nome é Doomented. Aqui você encontrará o que há de melhor, e de pior. 
+                        Contradições, insanidade e tudo que há de bom ou de ruim. Nada é por acaso, nada é ilegal e tudo é permitido. 
+                        Coloque em sua mente que há de ser tudo da lei. Nossa filosofia é simples, negar nossos impulsos é negar aquilo que nos torna humanos.</p>
                 </main>
-            <aside class="sidebar-right">
-    <h2>Links</h2>
-    <a href="https://github.com/CarlosAugusto2000/" target="_blank" rel="noopener noreferrer">
-        https://github.com/CarlosAugusto2000/
-    </a>
-</aside>
             </div>
         </div>
     </section>
-
-<section class="second-section" id="hmmm-section">
-    <div class="container">
-        <div class="full-box">
-            <h1>Hmmmm</h1>
-            <p>I walked. I could do nothing but walk. And then I saw me walking in front of myself. But, it wasn't really me. Watch out. The gap in the door...is a separate reality. The only me is me. Are you sure the only you is you?</p>
+    <section id="secao2" class="second-section">
+        <div class="container">
+            <div class="card second-content">
+                <h2>Run while you can</h2>
+                <p>I walked. I could do nothing but walk. And then I saw me walking in front of myself. But, it wasn't really me. Watch out. The gap in the door...is a separate reality. The only me is me. Are you sure the only you is you?</p>
+            </div>
         </div>
-    </div>
-</section>
-    <section class="third-section">
     </section>
+    <audio id="audio1" src="music/re.mp3" loop></audio>
+    <audio id="audio2" src="music/re1.mp3" loop></audio>
+    <script src="scripts.js"></script>
 </body>
 </html>
