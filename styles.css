@@ -72,6 +72,15 @@ body {
     align-items: stretch;
 }
 
+.post-image {
+    width: 100%;             
+    height: auto;            
+    display: block;          
+    margin-top: 15px;        
+    border: 1px solid #1a1a1a; 
+    border-radius: 2px;      
+}
+
 
 .card {
     background: rgba(12, 12, 12, 0.88);
