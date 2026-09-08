@@ -73,12 +73,15 @@ body {
 }
 
 .post-image {
-    width: 100%;             
-    height: auto;            
-    display: block;          
-    margin-top: 15px;        
-    border: 1px solid #1a1a1a; 
-    border-radius: 2px;      
+    width: calc(100% + 44px);   
+    margin-left: -22px;         
+    margin-right: -22px;        
+    max-width: none;            
+    height: auto;
+    display: block;
+    margin-top: 15px;
+    border-top: 1px solid #1a1a1a;    
+    border-bottom: 1px solid #1a1a1a;
 }
 
 
