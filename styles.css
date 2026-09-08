@@ -113,12 +113,11 @@ body {
 }
 
 h2 {
-    font-family: 'MedievalSharp', cursive;
-    color: #d11a1a;
-    font-size: 1.3rem;
-    margin-bottom: 12px;
-    font-weight: normal;
-}
+   margin: 0 0 5px 0;
+    font-family: 'Gothic',serif;
+    color: #FFDEDE;
+    font-size: 4vh;
+    text-shadow: 0 0 10px rgba(255, 0 ,0, 0.6);
 
 .main-content h2 {
     font-family: Arial, Helvetica, sans-serif; 
