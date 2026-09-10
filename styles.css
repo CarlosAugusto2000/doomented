@@ -245,6 +245,100 @@ h2 {
     filter: drop-shadow(0 0 12px #ff2a2a);
 }
 
+html, body.form-page-body {
+    background-color: #000000 !important;
+    background-image: none !important; 
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.form-card {
+    background-color: #0a0a0a !important;
+    border: 2px solid #ff2a2a !important; 
+    box-shadow: 0 0 20px rgba(255, 42, 42, 0.4), inset 0 0 10px rgba(0, 0, 0, 0.9);
+    width: 100%;
+    max-width: 480px; 
+    padding: 35px 30px;
+    border-radius: 0px !important; 
+    box-sizing: border-box;
+    margin: 20px;
+}
+
+.form-card h1 {
+    font-family: 'Jacquard 12', 'MedievalSharp', cursive;
+    color: #ffe6e6;
+    text-shadow: 0 0 4px #c92424, 0 0 8px #730000;
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: normal;
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.form-group label {
+    font-family: 'Jacquard 12', 'MedievalSharp', cursive;
+    color: #ffd6d6;
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    text-shadow: 0 0 3px #8c1111;
+}
+
+
+.form-control {
+    background-color: #000000;
+    border: 1px solid #a31c1c; 
+    border-radius: 0px;
+    color: #e6d8d8;
+    padding: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+
+.form-control:focus {
+    border-color: #ff2a2a;
+    box-shadow: 0 0 8px rgba(255, 42, 42, 0.7);
+}
+
+textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+
+.btn-submit {
+    width: 100%;
+    background-color: #120202;
+    border: 1px solid #ff2a2a;
+    border-radius: 0px;
+    color: #ffd6d6;
+    font-family: 'Jacquard 12', 'MedievalSharp', cursive;
+    font-size: 1.5rem;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: #8c1111;
+    color: #ffffff;
+    box-shadow: 0 0 12px #ff2a2a;
+}
 @media (max-width: 900px) {
     .content-grid {
         flex-direction: column;
