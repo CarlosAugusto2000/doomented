@@ -70,7 +70,8 @@ body {
 
 .main-header h1 {
     font-family: 'Jacquard 12', 'MedievalSharp', cursive;
-    color: #e61c1c;
+    color: #ffd6d6;
+    text-shadow: 0 0 4px #a31c1c, 0 0 8px #6e0000;
     font-size: 3rem;
     letter-spacing: 2px;
     font-weight: normal;
@@ -113,37 +114,43 @@ body {
     border-top: 1px solid #1a1a1a;
 }
 
+
 h2 {
     font-family: 'Jacquard 12', 'MedievalSharp', cursive;
-    color: #ff2a2a;
-    font-size: 2rem;
+    color: #ffd6d6; 
+    text-shadow: 0 0 4px #b81d1d, 0 0 6px #500000; 
+    font-size: 1.8rem;
     margin-bottom: 12px;
     font-weight: normal;
-    text-transform: capitalize;
 }
+
 
 .main-content h2 {
     font-family: 'Jacquard 12', 'MedievalSharp', cursive;
     font-weight: normal;
-    color: #ff2a2a;
-    font-size: 2.3rem;
+    color: #ffe6e6; 
+    text-shadow: 0 0 3px #c92424, 0 0 7px #730000; 
+    font-size: 2.2rem;
     margin-bottom: 6px;
     letter-spacing: 1px;
 }
 
 .main-content .date {
     display: block;
-    font-size: 0.8rem;
-    color: #888888;
+    font-size: 0.75rem;
+    color: #777777;
     margin-bottom: 16px;
 }
 
+
 .main-content p {
-    font-size: 1rem;
+    font-size: 0.95rem;
     line-height: 1.6;
-    color: #dddddd; 
+    color: #e6d8d8; 
+    text-shadow: 0 0 2px rgba(180, 40, 40, 0.4);
     text-align: justify;
 }
+
 
 .sidebar-left ul,
 .sidebar-right ul {
@@ -158,17 +165,19 @@ h2 {
 .sidebar-left a,
 .sidebar-right a {
     font-family: 'Jacquard 12', 'MedievalSharp', cursive;
-    color: #d1d1d1;
+    color: #ebdada; 
+    text-shadow: 0 0 3px #8c1111;
     text-decoration: none;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     text-transform: lowercase;
     display: block;
-    transition: color 0.2s;
+    transition: all 0.2s;
 }
 
 .sidebar-left a:hover,
 .sidebar-right a:hover {
-    color: #ff2a2a;
+    color: #ffffff;
+    text-shadow: 0 0 6px #ff2a2a, 0 0 10px #aa0000; 
 }
 
 .second-section {
