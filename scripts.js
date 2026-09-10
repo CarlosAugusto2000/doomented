@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const secao3 = document.getElementById('secao3');
     const audio1 = document.getElementById('audio1');
     const audio2 = document.getElementById('audio2');
+
     function toggleAudio(targetAudio, otherAudio) {
         otherAudio.pause();
         otherAudio.currentTime = 0;
@@ -16,20 +17,26 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+
     function isInteractiveElement(target) {
         return target.tagName === 'A' || target.tagName === 'BUTTON' || target.closest('a');
     }
-    secao1.addEventListener('click', (e) => {
-        if (isInteractiveElement(e.target)) return;
-        toggleAudio(audio1, audio2);
-    });
-    secao2.addEventListener('click', (e) => {
-        if (isInteractiveElement(e.target)) return;
-        toggleAudio(audio2, audio1);
-    });
-});
 
-if (secao3) {
+    if (secao1) {
+        secao1.addEventListener('click', (e) => {
+            if (isInteractiveElement(e.target)) return;
+            toggleAudio(audio1, audio2);
+        });
+    }
+
+    if (secao2) {
+        secao2.addEventListener('click', (e) => {
+            if (isInteractiveElement(e.target)) return;
+            toggleAudio(audio2, audio1);
+        });
+    }
+
+    if (secao3) {
         secao3.addEventListener('click', (e) => {
             if (isInteractiveElement(e.target)) return;
         });
