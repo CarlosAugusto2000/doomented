@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jacquard+12&family=MedievalSharp&display=swap');
 
 * {
     margin: 0;
@@ -40,7 +40,6 @@ body {
     padding: 0 10px; 
 }
 
-
 .hero-section {
     position: relative;
     width: 100%;
@@ -50,9 +49,10 @@ body {
     align-items: center;
     padding: 20px 0; 
 }
+
 .main-header {
     background: transparent; 
-    box-shadow: none;       
+    box-shadow: none;        
     border: none;
     padding: 10px 0;
     margin-bottom: 20px;
@@ -61,15 +61,17 @@ body {
     align-items: center;
     gap: 20px;
 }
+
 .header-gif {
     width: 35px;            
     height: auto;
     display: block;
 }
+
 .main-header h1 {
-    font-family: 'MedievalSharp', cursive;
-    color: #d11a1a;
-    font-size: 2.5rem;
+    font-family: 'Jacquard 12', 'MedievalSharp', cursive;
+    color: #e61c1c;
+    font-size: 3rem;
     letter-spacing: 2px;
     font-weight: normal;
 }
@@ -103,7 +105,6 @@ body {
     padding: 22px 22px 15px 22px;
 }
 
-
 .post-image {
     width: 100%;
     height: auto;
@@ -111,35 +112,36 @@ body {
     margin-top: 10px;
     border-top: 1px solid #1a1a1a;
 }
+
 h2 {
-    font-family: 'MedievalSharp', cursive;
-    color: #d11a1a;
-    font-size: 1.5rem;
+    font-family: 'Jacquard 12', 'MedievalSharp', cursive;
+    color: #ff2a2a;
+    font-size: 2rem;
     margin-bottom: 12px;
     font-weight: normal;
-    letter-spacing: 1px;
+    text-transform: capitalize;
 }
 
 .main-content h2 {
-    font-family: 'MedievalSharp', cursive;
-    color: #d11a1a;
-    font-size: 1.8rem;
-    margin-bottom: 4px;
+    font-family: 'Jacquard 12', 'MedievalSharp', cursive;
     font-weight: normal;
+    color: #ff2a2a;
+    font-size: 2.3rem;
+    margin-bottom: 6px;
     letter-spacing: 1px;
 }
 
 .main-content .date {
     display: block;
-    font-size: 0.75rem;
-    color: #666666;
+    font-size: 0.8rem;
+    color: #888888;
     margin-bottom: 16px;
 }
 
 .main-content p {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: #aaaaaa;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #dddddd; 
     text-align: justify;
 }
 
@@ -150,20 +152,23 @@ h2 {
 
 .sidebar-left li,
 .sidebar-right li {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .sidebar-left a,
 .sidebar-right a {
-    color: #888888;
+    font-family: 'Jacquard 12', 'MedievalSharp', cursive;
+    color: #d1d1d1;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 1.4rem;
+    text-transform: lowercase;
+    display: block;
     transition: color 0.2s;
 }
 
 .sidebar-left a:hover,
 .sidebar-right a:hover {
-    color: #ffffff;
+    color: #ff2a2a;
 }
 
 .second-section {
