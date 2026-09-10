@@ -114,7 +114,6 @@ body {
     border-top: 1px solid #1a1a1a;
 }
 
-
 h2 {
     font-family: 'Jacquard 12', 'MedievalSharp', cursive;
     color: #ffd6d6; 
@@ -123,7 +122,6 @@ h2 {
     margin-bottom: 12px;
     font-weight: normal;
 }
-
 
 .main-content h2 {
     font-family: 'Jacquard 12', 'MedievalSharp', cursive;
@@ -142,7 +140,6 @@ h2 {
     margin-bottom: 16px;
 }
 
-
 .main-content p {
     font-size: 0.95rem;
     line-height: 1.6;
@@ -150,7 +147,6 @@ h2 {
     text-shadow: 0 0 2px rgba(180, 40, 40, 0.4);
     text-align: justify;
 }
-
 
 .sidebar-left ul,
 .sidebar-right ul {
@@ -200,6 +196,7 @@ h2 {
     border: 1px solid #222222;
 }
 
+
 .third-section {
     position: relative;
     width: 100%;
@@ -218,17 +215,9 @@ h2 {
     align-items: center;
 }
 
-.center-gif {
-    max-width: 220px;
-    width: 100%;
-    height: auto;
-    display: block;
-    cursor: pointer;
-    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.9));
-}
-.form-trigger-link:hover {
-    transform: scale(1.08);
-    filter: drop-shadow(0 0 15px #ff2a2a);
+.form-trigger-link {
+    display: inline-block;
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .center-gif {
@@ -239,13 +228,12 @@ h2 {
     filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.8));
 }
 
-
 .form-trigger-link:hover {
     transform: scale(1.08);
     filter: drop-shadow(0 0 12px #ff2a2a);
 }
 
-html, body.form-page-body {
+body.form-page-body {
     background-color: #000000 !important;
     background-image: none !important; 
     margin: 0;
@@ -279,13 +267,11 @@ html, body.form-page-body {
     font-weight: normal;
 }
 
-
 .form-group {
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
 }
-
 
 .form-group label {
     font-family: 'Jacquard 12', 'MedievalSharp', cursive;
@@ -294,7 +280,6 @@ html, body.form-page-body {
     margin-bottom: 8px;
     text-shadow: 0 0 3px #8c1111;
 }
-
 
 .form-control {
     background-color: #000000;
@@ -308,7 +293,6 @@ html, body.form-page-body {
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-
 .form-control:focus {
     border-color: #ff2a2a;
     box-shadow: 0 0 8px rgba(255, 42, 42, 0.7);
@@ -318,7 +302,6 @@ textarea.form-control {
     resize: vertical;
     min-height: 120px;
 }
-
 
 .btn-submit {
     width: 100%;
@@ -339,6 +322,7 @@ textarea.form-control {
     color: #ffffff;
     box-shadow: 0 0 12px #ff2a2a;
 }
+
 @media (max-width: 900px) {
     .content-grid {
         flex-direction: column;
