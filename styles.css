@@ -204,7 +204,7 @@ h2 {
     position: relative;
     width: 100%;
     min-height: 100vh;
-    background-color: #000000; 
+    background-color: #000000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -218,9 +218,17 @@ h2 {
     align-items: center;
 }
 
-.form-trigger-link {
-    display: inline-block;
-    transition: transform 0.3s ease, filter 0.3s ease;
+.center-gif {
+    max-width: 220px;
+    width: 100%;
+    height: auto;
+    display: block;
+    cursor: pointer;
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.9));
+}
+.form-trigger-link:hover {
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 15px #ff2a2a);
 }
 
 .center-gif {
