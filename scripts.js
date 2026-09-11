@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const secao1 = document.getElementById('secao1');
     const secao2 = document.getElementById('secao2');
     const secao3 = document.getElementById('secao3');
+    const secao5 = document.getElementById('secao5');
     const audio1 = document.getElementById('audio1');
     const audio2 = document.getElementById('audio2');
 
@@ -42,3 +43,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+if (secao5) {
+    secao5.addEventListener('click', (e) => {
+        if (isInteractiveElement(e.target)) return;
+    });
+}
