@@ -11,7 +11,7 @@
     <main class="form-card">
         <h1>Leave your message</h1>
         
-        <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Mensagem enviada!');">
+        <form id="comment-form">
             <div class="form-group">
                 <label for="nome">Nome / Nickname:</label>
                 <input type="text" id="nome" name="nome" class="form-control" required placeholder="Seu nome...">
@@ -24,7 +24,11 @@
 
             <button type="submit" class="btn-submit">Enviar</button>
         </form>
+
+        <div id="lista-comentarios" class="comments-list">
+            </div>
     </main>
 
+    <script src="guestbook.js"></script>
 </body>
 </html>
