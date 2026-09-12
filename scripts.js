@@ -49,3 +49,33 @@ if (secao5) {
         if (isInteractiveElement(e.target)) return;
     });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('comment-form');
+    const container = document.getElementById('lista-comentarios');
+
+    function carregarComentarios() {
+        const comentarios = JSON.parse(localStorage.getItem('doomented_comments') || '[]');
+        container.innerHTML = comentarios.map(c => `
+            <div class="comment-item">
+                <span class="comment-author">${c.nome}</span>
+                <p class="comment-text">${c.mensagem}</p>
+            </div>
+        `).join('');
+    }
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nome = document.getElementById('nome').value;
+        const mensagem = document.getElementById('mensagem').value;
+
+        const comentarios = JSON.parse(localStorage.getItem('doomented_comments') || '[]');
+        comentarios.unshift({ nome, mensagem });
+        localStorage.setItem('doomented_comments', JSON.stringify(comentarios));
+
+        form.reset();
+        carregarComentarios();
+    });
+
+    carregarComentarios();
+});
