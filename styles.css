@@ -385,6 +385,36 @@ textarea.form-control {
     display: block;
 }
 
+.comments-list {
+    margin-top: 30px;
+    border-top: 1px solid #a31c1c;
+    padding-top: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.comment-item {
+    background-color: #000;
+    border: 1px solid #222;
+    padding: 12px;
+    margin-bottom: 12px;
+}
+
+.comment-author {
+    font-family: 'Jacquard 12', 'MedievalSharp', cursive;
+    color: #ffd6d6;
+    font-size: 1.2rem;
+    text-shadow: 0 0 3px #8c1111;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.comment-text {
+    font-size: 0.9rem;
+    color: #cccccc;
+    word-break: break-word;
+}
+
 
 @media (max-width: 900px) {
     .gallery-grid {
