@@ -1,16 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('comment-form');
     const listaComentarios = document.getElementById('lista-comentarios');
+
     async function carregarComentarios() {
         try {
             const response = await fetch('/api/comentarios');
             if (!response.ok) throw new Error('Erro ao buscar comentários');
             
             const comentarios = await response.json();
-            
             listaComentarios.innerHTML = ''; 
 
-            if (comentarios.length === 0) {
+            if (!comentarios || comentarios.length === 0) {
                 listaComentarios.innerHTML = '<p style="color: #888; text-align: center;">Nenhum comentário ainda. Seja o primeiro!</p>';
                 return;
             }
@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
             comentarios.forEach(c => {
                 const item = document.createElement('div');
                 item.className = 'comment-item';
+                
                 const dataEnvio = new Date(c.created_at).toLocaleDateString('pt-BR', {
                     day: '2-digit',
                     month: '2-digit',
@@ -28,8 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 item.innerHTML = `
                     <div class="comment-header">
-                        <strong>${escapeHTML(c.nome)}</strong>
-                        <span class="comment-date">${dataEnvio}</span>
+                        <strong class="comment-author">${escapeHTML(c.nome)}</strong>
+                        <span class="comment-date" style="font-size:0.75rem; color:#666; float:right;">${dataEnvio}</span>
                     </div>
                     <p class="comment-text">${escapeHTML(c.mensagem)}</p>
                 `;
@@ -37,12 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         } catch (error) {
             console.error('Erro:', error);
-            listaComentarios.innerHTML = '<p style="color: #ff5555;">Erro ao carregar comentários.</p>';
+            listaComentarios.innerHTML = '<p style="color: #ff5555; text-align: center;">Erro ao carregar comentários.</p>';
         }
     }
 
     function escapeHTML(str) {
-        return str.replace(/[&<>'"]/g, 
+        return (str || '').replace(/[&<>'"]/g, 
             tag => ({
                 '&': '&amp;',
                 '<': '&lt;',
@@ -52,32 +53,35 @@ document.addEventListener('DOMContentLoaded', () => {
             }[tag] || tag)
         );
     }
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
 
-        const nome = document.getElementById('nome').value.trim();
-        const mensagem = document.getElementById('mensagem').value.trim();
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-        if (!nome || !mensagem) return;
+            const nome = document.getElementById('nome').value.trim();
+            const mensagem = document.getElementById('mensagem').value.trim();
 
-        try {
-            const response = await fetch('/api/comentarios', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ nome, mensagem })
-            });
+            if (!nome || !mensagem) return;
 
-            if (response.ok) {
-                form.reset(); 
-                carregarComentarios(); 
-            } else {
-                alert('Ocorreu um erro ao enviar seu comentário.');
+            try {
+                const response = await fetch('/api/comentarios', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nome, mensagem })
+                });
+
+                if (response.ok) {
+                    form.reset();
+                    carregarComentarios();
+                } else {
+                    alert('Ocorreu um erro ao enviar seu comentário.');
+                }
+            } catch (error) {
+                console.error('Erro no envio:', error);
+                alert('Falha na conexão com o servidor.');
             }
-        } catch (error) {
-            console.error('Erro no envio:', error);
-            alert('Falha na conexão com o servidor.');
-        }
-    });
+        });
+    }
 
     carregarComentarios();
 });
