@@ -1,87 +1,48 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('comment-form');
-    const listaComentarios = document.getElementById('lista-comentarios');
+  const form = document.getElementById('comment-form');
+  const container = document.getElementById('comments-list');
+  async function carregarComentarios() {
+    try {
+      const res = await fetch('/api/comentarios');
+      const comentarios = await res.json();
 
-    async function carregarComentarios() {
-        try {
-            const response = await fetch('/api/comentarios');
-            if (!response.ok) throw new Error('Erro ao buscar comentários');
-            
-            const comentarios = await response.json();
-            listaComentarios.innerHTML = ''; 
-
-            if (!comentarios || comentarios.length === 0) {
-                listaComentarios.innerHTML = '<p style="color: #888; text-align: center;">Nenhum comentário ainda. Seja o primeiro!</p>';
-                return;
-            }
-
-            comentarios.forEach(c => {
-                const item = document.createElement('div');
-                item.className = 'comment-item';
-                
-                const dataEnvio = new Date(c.created_at).toLocaleDateString('pt-BR', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                });
-
-                item.innerHTML = `
-                    <div class="comment-header">
-                        <strong class="comment-author">${escapeHTML(c.nome)}</strong>
-                        <span class="comment-date" style="font-size:0.75rem; color:#666; float:right;">${dataEnvio}</span>
-                    </div>
-                    <p class="comment-text">${escapeHTML(c.mensagem)}</p>
-                `;
-                listaComentarios.appendChild(item);
-            });
-        } catch (error) {
-            console.error('Erro:', error);
-            listaComentarios.innerHTML = '<p style="color: #ff5555; text-align: center;">Erro ao carregar comentários.</p>';
-        }
+      if (container) {
+        container.innerHTML = comentarios.map(c => `
+          <div class="comentario-item" style="border-bottom: 1px solid #444; margin-bottom: 10px; padding-bottom: 5px;">
+            <strong>${escapeHtml(c.nome)}</strong>:
+            <p>${escapeHtml(c.mensagem)}</p>
+          </div>
+        `).join('');
+      }
+    } catch (err) {
+      console.error('Erro ao carregar comentários:', err);
     }
+  }
 
-    function escapeHTML(str) {
-        return (str || '').replace(/[&<>'"]/g, 
-            tag => ({
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                "'": '&#39;',
-                '"': '&quot;'
-            }[tag] || tag)
-        );
-    }
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const nome = document.getElementById('nome').value;
+      const mensagem = document.getElementById('mensagem').value;
 
-    if (form) {
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
+      const res = await fetch('/api/comentarios', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, mensagem })
+      });
 
-            const nome = document.getElementById('nome').value.trim();
-            const mensagem = document.getElementById('mensagem').value.trim();
+      if (res.ok) {
+        form.reset();
+        carregarComentarios(); 
+      } else {
+        alert('Erro ao enviar comentário.');
+      }
+    });
+  }
 
-            if (!nome || !mensagem) return;
+  function escapeHtml(str) {
+    return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
 
-            try {
-                const response = await fetch('/api/comentarios', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ nome, mensagem })
-                });
-
-                if (response.ok) {
-                    form.reset();
-                    carregarComentarios();
-                } else {
-                    alert('Ocorreu um erro ao enviar seu comentário.');
-                }
-            } catch (error) {
-                console.error('Erro no envio:', error);
-                alert('Falha na conexão com o servidor.');
-            }
-        });
-    }
-
-    carregarComentarios();
+  carregarComentarios();
 });
