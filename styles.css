@@ -20,6 +20,10 @@ body {
     color: #cccccc;
     font-family: Arial, Helvetica, sans-serif;
 }
+.secao-titulo {
+    color: #D22B2B;
+    text-align: center;
+}
 
 .overlay {
     position: absolute;
