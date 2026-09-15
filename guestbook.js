@@ -8,26 +8,30 @@ document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('lista-comentarios');
 
   async function carregarComentarios() {
+
     const { data, error } = await _supabase
       .from('comentarios')
-      .select('*')
-      .order('created_at', { ascending: false });
+      .select('*');
 
     if (error) {
-      console.error('Erro retornado pelo Supabase:', error);
+      console.error('Erro ao buscar comentários:', error);
       container.innerHTML = `<p style="color: red;">Erro ao carregar comentários: ${error.message}</p>`;
       return;
     }
+
+    console.log('Dados recebidos do Supabase:', data);
 
     if (!data || data.length === 0) {
       container.innerHTML = '<p>Nenhum comentário ainda. Seja o primeiro!</p>';
       return;
     }
 
-    container.innerHTML = data.map(c => `
-      <div class="comentario-item">
-        <strong>${escapeHtml(c.nome)}</strong>
-        <p>${escapeHtml(c.mensagem)}</p>
+    const listaInvertida = [...data].reverse();
+
+    container.innerHTML = listaInvertida.map(c => `
+      <div class="comentario-item" style="border-bottom: 1px solid #333; margin-top: 10px; padding-bottom: 10px;">
+        <strong style="color: #ff4d4d; display: block; margin-bottom: 4px;">${escapeHtml(c.nome)}</strong>
+        <p style="color: #ccc; margin: 0;">${escapeHtml(c.mensagem)}</p>
       </div>
     `).join('');
   }
@@ -44,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!error) {
         form.reset();
-        carregarComentarios();
+        await carregarComentarios();
       } else {
         alert('Erro ao enviar: ' + error.message);
       }
