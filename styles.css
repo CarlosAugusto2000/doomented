@@ -409,6 +409,26 @@ textarea.form-control {
     margin-bottom: 4px;
 }
 
+.comentario-item {
+    background-color: #0d0d0d;
+    border: 1px solid #333;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+.comentario-item strong {
+    color: #ff4d4d !important;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.comentario-item p {
+    color: #cccccc;
+    margin: 0;
+}
+
 .comment-text {
     font-size: 0.9rem;
     color: #cccccc;
