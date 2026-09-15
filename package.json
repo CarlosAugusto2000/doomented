@@ -1,9 +1,11 @@
-
-
 {
-  "name": "doomented",
+  "name": "meu-guestbook",
   "version": "1.0.0",
   "dependencies": {
-    "@supabase/supabase-js": "^2.39.0"
+    "@supabase/supabase-js": "^2.45.0"
+  },
+  "devDependencies": {
+    "@vercel/node": "^3.0.0",
+    "typescript": "^5.0.0"
   }
 }
