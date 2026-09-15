@@ -8,38 +8,50 @@ document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('lista-comentarios');
 
   async function carregarComentarios() {
+    if (!container) return;
+
+    
+    container.innerHTML = '<p style="color: #888;">Buscando comentários no Supabase...</p>';
+
     const { data, error } = await _supabase
       .from('comentarios')
       .select('*');
 
     if (error) {
       console.error('Erro ao buscar comentários:', error);
-      container.innerHTML = `<p style="color: #ff4d4d;">Erro ao carregar comentários: ${error.message}</p>`;
+      container.innerHTML = `<p style="color: #ff2a2a;">Erro ao carregar: ${error.message}</p>`;
       return;
     }
 
     console.log('Dados recebidos do Supabase:', data);
 
     if (!data || data.length === 0) {
-      container.innerHTML = '<p style="color: #ccc;">Nenhum comentário ainda. Seja o primeiro!</p>';
+      container.innerHTML = '<p style="color: #cccccc;">Nenhum comentário ainda. Seja o primeiro!</p>';
       return;
     }
 
-  
+    
     const listaInvertida = [...data].reverse();
 
-    container.innerHTML = listaInvertida.map(c => {
+    
+    container.innerHTML = '';
 
+    
+    listaInvertida.forEach(c => {
       const nomeVal = c.nome || c.Nome || 'Anônimo';
       const msgVal = c.mensagem || c.Mensagem || c.message || '';
 
-      return `
-        <div class="comentario-item" style="border: 1px solid #ff4d4d; border-radius: 6px; padding: 12px; margin-top: 12px; background: rgba(0, 0, 0, 0.6); text-align: left;">
-          <strong style="color: #ff4d4d; display: block; font-size: 1.1em; margin-bottom: 6px; font-family: inherit;">${escapeHtml(nomeVal)}</strong>
-          <p style="color: #ffffff; margin: 0; line-height: 1.4; white-space: pre-wrap; font-family: sans-serif;">${escapeHtml(msgVal)}</p>
-        </div>
+      const item = document.createElement('div');
+      item.className = 'comentario-item';
+      item.style.cssText = 'background-color: #0d0d0d; border: 1px solid #333; padding: 12px; margin-top: 10px; border-radius: 4px; text-align: left;';
+
+      item.innerHTML = `
+        <strong style="color: #ff4d4d; font-size: 1.1rem; display: block; margin-bottom: 4px;">${escapeHtml(nomeVal)}</strong>
+        <p style="color: #cccccc; margin: 0; line-height: 1.4; word-break: break-word;">${escapeHtml(msgVal)}</p>
       `;
-    }).join('');
+
+      container.appendChild(item);
+    });
   }
 
   if (form) {
