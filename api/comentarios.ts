@@ -1,16 +1,11 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.SUPABASE_URL || '';
-const supabaseKey = process.env.SUPABASE_KEY || '';
-
-const supabase = createClient(supabaseUrl, supabaseKey);
-
 export default async function handler(
   req: VercelRequest,
   res: VercelResponse
 ) {
-  // Libera o CORS para aceitar requisições do seu frontend
+  // Configuração de CORS para permitir requisições do seu frontend
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -19,42 +14,56 @@ export default async function handler(
     return res.status(200).end();
   }
 
-  // Se as chaves do Supabase estiverem ausentes no servidor
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseKey = process.env.SUPABASE_KEY;
+
+  // Verifica se as variáveis de ambiente foram configuradas na Vercel
   if (!supabaseUrl || !supabaseKey) {
-    return res.status(500).json({ error: 'Configuração do Supabase ausente na Vercel.' });
+    return res.status(500).json({ 
+      error: 'Variáveis SUPABASE_URL ou SUPABASE_KEY não foram encontradas na Vercel.' 
+    });
   }
 
   try {
-    // BUSCAR COMENTÁRIOS (GET)
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    // 1. BUSCAR COMENTÁRIOS (GET)
     if (req.method === 'GET') {
       const { data, error } = await supabase
         .from('comentarios')
         .select('*')
         .order('created_at', { ascending: false });
 
-      if (error) throw error;
+      if (error) {
+        return res.status(500).json({ error: error.message });
+      }
+
       return res.status(200).json(data || []);
     }
 
-    // ENVIAR COMENTÁRIO (POST)
+    // 2. ENVIAR COMENTÁRIO (POST)
     if (req.method === 'POST') {
-      const { nome, mensagem } = req.body || {};
+      const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+      const { nome, mensagem } = body || {};
 
       if (!nome || !mensagem) {
-        return res.status(400).json({ error: 'Preencha todos os campos.' });
+        return res.status(400).json({ error: 'Nome e mensagem são obrigatórios.' });
       }
 
       const { data, error } = await supabase
         .from('comentarios')
         .insert([{ nome, mensagem }]);
 
-      if (error) throw error;
+      if (error) {
+        return res.status(500).json({ error: error.message });
+      }
+
       return res.status(201).json({ success: true, data });
     }
 
     return res.status(405).json({ error: 'Método não permitido.' });
 
   } catch (err: any) {
-    console.error('Erro na API:', err.message);
-    return res.status(500).json({ error: err.message });
+    return res.status(500).json({ error: 'Erro interno no servidor: ' + err.message });
   }
+}
