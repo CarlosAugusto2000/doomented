@@ -5,7 +5,6 @@ export default async function handler(
   req: VercelRequest,
   res: VercelResponse
 ) {
-  // Configuração de CORS para permitir requisições do seu frontend
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -17,17 +16,16 @@ export default async function handler(
   const supabaseUrl = process.env.SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_KEY;
 
-  // Verifica se as variáveis de ambiente foram configuradas na Vercel
   if (!supabaseUrl || !supabaseKey) {
+    console.error('ERRO: Variáveis ausentes:', { supabaseUrl: !!supabaseUrl, supabaseKey: !!supabaseKey });
     return res.status(500).json({ 
-      error: 'Variáveis SUPABASE_URL ou SUPABASE_KEY não foram encontradas na Vercel.' 
+      error: 'Variáveis SUPABASE_URL ou SUPABASE_KEY não configuradas na Vercel.' 
     });
   }
 
   try {
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    // 1. BUSCAR COMENTÁRIOS (GET)
     if (req.method === 'GET') {
       const { data, error } = await supabase
         .from('comentarios')
@@ -35,13 +33,13 @@ export default async function handler(
         .order('created_at', { ascending: false });
 
       if (error) {
+        console.error('Erro na busca do Supabase:', error.message);
         return res.status(500).json({ error: error.message });
       }
 
       return res.status(200).json(data || []);
     }
 
-    // 2. ENVIAR COMENTÁRIO (POST)
     if (req.method === 'POST') {
       const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
       const { nome, mensagem } = body || {};
@@ -55,6 +53,7 @@ export default async function handler(
         .insert([{ nome, mensagem }]);
 
       if (error) {
+        console.error('Erro na inserção do Supabase:', error.message);
         return res.status(500).json({ error: error.message });
       }
 
@@ -64,6 +63,7 @@ export default async function handler(
     return res.status(405).json({ error: 'Método não permitido.' });
 
   } catch (err: any) {
-    return res.status(500).json({ error: 'Erro interno no servidor: ' + err.message });
+    console.error('Erro de execução:', err.message);
+    return res.status(500).json({ error: err.message });
   }
 }
