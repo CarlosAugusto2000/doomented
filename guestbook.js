@@ -8,39 +8,50 @@ document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('lista-comentarios');
 
   async function carregarComentarios() {
-
     const { data, error } = await _supabase
       .from('comentarios')
       .select('*');
 
     if (error) {
       console.error('Erro ao buscar comentários:', error);
-      container.innerHTML = `<p style="color: red;">Erro ao carregar comentários: ${error.message}</p>`;
+      container.innerHTML = `<p style="color: #ff4d4d;">Erro ao carregar comentários: ${error.message}</p>`;
       return;
     }
 
     console.log('Dados recebidos do Supabase:', data);
 
     if (!data || data.length === 0) {
-      container.innerHTML = '<p>Nenhum comentário ainda. Seja o primeiro!</p>';
+      container.innerHTML = '<p style="color: #ccc;">Nenhum comentário ainda. Seja o primeiro!</p>';
       return;
     }
 
+  
     const listaInvertida = [...data].reverse();
 
-    container.innerHTML = listaInvertida.map(c => `
-      <div class="comentario-item" style="border-bottom: 1px solid #333; margin-top: 10px; padding-bottom: 10px;">
-        <strong style="color: #ff4d4d; display: block; margin-bottom: 4px;">${escapeHtml(c.nome)}</strong>
-        <p style="color: #ccc; margin: 0;">${escapeHtml(c.mensagem)}</p>
-      </div>
-    `).join('');
+    container.innerHTML = listaInvertida.map(c => {
+
+      const nomeVal = c.nome || c.Nome || 'Anônimo';
+      const msgVal = c.mensagem || c.Mensagem || c.message || '';
+
+      return `
+        <div class="comentario-item" style="border: 1px solid #ff4d4d; border-radius: 6px; padding: 12px; margin-top: 12px; background: rgba(0, 0, 0, 0.6); text-align: left;">
+          <strong style="color: #ff4d4d; display: block; font-size: 1.1em; margin-bottom: 6px; font-family: inherit;">${escapeHtml(nomeVal)}</strong>
+          <p style="color: #ffffff; margin: 0; line-height: 1.4; white-space: pre-wrap; font-family: sans-serif;">${escapeHtml(msgVal)}</p>
+        </div>
+      `;
+    }).join('');
   }
 
   if (form) {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const nome = document.getElementById('nome').value;
-      const mensagem = document.getElementById('mensagem').value;
+      const nomeInput = document.getElementById('nome');
+      const mensagemInput = document.getElementById('mensagem');
+
+      const nome = nomeInput.value.trim();
+      const mensagem = mensagemInput.value.trim();
+
+      if (!nome || !mensagem) return;
 
       const { error } = await _supabase
         .from('comentarios')
