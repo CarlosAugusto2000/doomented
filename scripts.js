@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const form = document.getElementById('comment-form');
@@ -5,8 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (form || commentsList) {
         const SUPABASE_URL = 'https://rujcltpflugvsvqhvlbft.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ1amNsdHBmdWd2c3ZxaHZsYmZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk0NDExMjcsImV4cCI6MjEwNTAxNzEyN30.FOqSayT0v-3HfULK6xv8vVxRvvyb9dG0M2A-1HxPk9I';
-        
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ1amNsdHBmdWd2c3ZxaHZsYmZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk0NDExMjcsImV4cCI6MjEwNTAxNzEyN30.FOqSayT0v-3HfULK6xv8vVxRvvyb9dG0M2A-1HxPk9I';
+
         if (window.supabase) {
             const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -70,25 +71,33 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
                 form.addEventListener('submit', async (e) => {
                     e.preventDefault();
 
-                    const nickname = document.getElementById('nickname').value.trim();
-                    const comment = document.getElementById('comment').value.trim();
+                    const nicknameInput = document.getElementById('nickname');
+                    const commentInput = document.getElementById('comment');
 
-                    if (!nickname || !comment) return;
+                    const nickname = nicknameInput ? nicknameInput.value.trim() : '';
+                    const comment = commentInput ? commentInput.value.trim() : '';
+
+                    if (!nickname || !comment) {
+                        alert('Por favor, preencha o apelido e o comentário!');
+                        return;
+                    }
 
                     try {
-                        const { error } = await supabase
+                        const { data, error } = await supabase
                             .from('comments')
-                            .insert([{ nickname, comment }]);
+                            .insert([{ nickname, comment }])
+                            .select(); 
 
                         if (error) {
+                            console.error("Erro detalhado do Supabase:", error);
                             alert('Erro ao enviar comentário: ' + error.message);
-                            console.error(error);
                         } else {
+                            alert('Comentário enviado com sucesso!');
                             form.reset();
-                            fetchComments();
+                            fetchComments(); // Recarrega a lista na tela
                         }
                     } catch (err) {
-                        alert('Erro de rede ao conectar com o banco de dados.');
+                        alert('Erro de conexão ao enviar o comentário.');
                         console.error(err);
                     }
                 });
