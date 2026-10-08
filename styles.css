@@ -135,8 +135,9 @@ h1, h2, .form-title, .form-label, .submit-btn, .comments-title, .sidebar-title, 
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    gap: 20px; 
     margin-bottom: 10px;
+    width: 100%;
 }
 
 .title-container h1 {
@@ -146,9 +147,15 @@ h1, h2, .form-title, .form-label, .submit-btn, .comments-title, .sidebar-title, 
     letter-spacing: 2px;
 }
 
-.skull-gif {
-    width: 40px;
-    height: auto;
+.title-container img.skull-gif,
+img.skull-gif {
+    width: 45px !important;  
+    height: 45px !important; 
+    max-width: 45px !important;
+    object-fit: contain;
+    border: none !important;
+    margin: 0 !important;
+    display: inline-block;
 }
 
 .section-data {
@@ -168,14 +175,11 @@ h1, h2, .form-title, .form-label, .submit-btn, .comments-title, .sidebar-title, 
 }
 
 
-.image-wrapper {
-    width: 100%;
-}
 
 .main-image,
 .section-gif-container img,
-.main-content img {
-    width: 100% !important; 
+.image-wrapper img {
+    width: 100% !important;
     height: auto;
     display: block;
     border: 1px solid #330000;
