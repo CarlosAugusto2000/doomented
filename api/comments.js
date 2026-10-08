@@ -1,44 +1,62 @@
+import https from 'https';
+
 export default async function handler(req, res) {
-    // Permite chamadas de qualquer origem (CORS)
     res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-    res.setHeader(
-        'Access-Control-Allow-Headers',
-        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-    );
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,POST');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, apikey');
 
     if (req.method === 'OPTIONS') {
         return res.status(200).end();
     }
 
-    const SUPABASE_URL = 'https://rujcltpflugvsvqhvlbft.supabase.co';
+    const SUPABASE_HOST = 'rujcltpflugvsvqhvlbft.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ1amNsdHBmdWd2c3ZxaHZsYmZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk0NDExMjcsImV4cCI6MjEwNTAxNzEyN30.FOqSayT0v-3HfULK6xv8vVxRvvyb9dG0M2A-1HxPk9I';
 
-    try {
-        if (req.method === 'GET') {
-            const response = await fetch(`${SUPABASE_URL}/rest/v1/comments?select=*&order=created_at.desc`, {
-                method: 'GET',
+    function supabaseRequest(path, method, bodyData = null) {
+        return new Promise((resolve, reject) => {
+            const options = {
+                hostname: SUPABASE_HOST,
+                port: 443,
+                path: path,
+                method: method,
                 headers: {
                     'apikey': SUPABASE_ANON_KEY,
                     'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Prefer': 'return=representation'
                 }
+            };
+
+            const request = https.request(options, (response) => {
+                let data = '';
+                response.on('data', (chunk) => { data += chunk; });
+                response.on('end', () => {
+                    try {
+                        const parsed = JSON.parse(data);
+                        resolve({ statusCode: response.statusCode, data: parsed });
+                    } catch (e) {
+                        resolve({ statusCode: response.statusCode, data: data });
+                    }
+                });
             });
 
-            const responseText = await response.text();
-            let data;
-            try {
-                data = JSON.parse(responseText);
-            } catch (e) {
-                return res.status(500).json({ message: 'Resposta inválida do Supabase: ' + responseText });
+            request.on('error', (err) => {
+                reject(err);
+            });
+
+            if (bodyData) {
+                request.write(JSON.stringify(bodyData));
             }
 
-            if (!response.ok) {
-                return res.status(response.status).json({ message: data.message || data.msg || 'Erro na API do Supabase' });
-            }
+            request.end();
+        });
+    }
 
-            return res.status(200).json(data);
+    try {
+        if (req.method === 'GET') {
+            const result = await supabaseRequest('/rest/v1/comments?select=*&order=created_at.desc', 'GET');
+            return res.status(result.statusCode).json(result.data);
         }
 
         if (req.method === 'POST') {
@@ -49,35 +67,13 @@ export default async function handler(req, res) {
                 return res.status(400).json({ message: 'Apelido e comentário são obrigatórios.' });
             }
 
-            const response = await fetch(`${SUPABASE_URL}/rest/v1/comments`, {
-                method: 'POST',
-                headers: {
-                    'apikey': SUPABASE_ANON_KEY,
-                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                    'Content-Type': 'application/json',
-                    'Prefer': 'return=representation'
-                },
-                body: JSON.stringify({ nickname, comment })
-            });
-
-            const responseText = await response.text();
-            let data;
-            try {
-                data = JSON.parse(responseText);
-            } catch (e) {
-                return res.status(500).json({ message: 'Resposta inválida do Supabase ao salvar: ' + responseText });
-            }
-
-            if (!response.ok) {
-                return res.status(response.status).json({ message: data.message || data.msg || 'Erro ao guardar no Supabase' });
-            }
-
-            return res.status(200).json(data);
+            const result = await supabaseRequest('/rest/v1/comments', 'POST', { nickname, comment });
+            return res.status(result.statusCode).json(result.data);
         }
 
         return res.status(405).json({ message: 'Método não permitido' });
     } catch (error) {
-        console.error('Erro de servidor:', error);
-        return res.status(500).json({ message: `Erro ao comunicar com o Supabase: ${error.message}` });
+        console.error('Erro de conexão:', error);
+        return res.status(500).json({ message: 'Falha na conexão com o Supabase: ' + error.message });
     }
 }
