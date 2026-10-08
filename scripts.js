@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (form || commentsList) {
         const SUPABASE_URL = 'https://rujcltpflugvsvqhvlbft.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ1amNsdHBmdWd2c3ZxaHZsYmZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk0NDExMjcsImV4cCI6MjEwNTAxNzEyN30.FOqSayT0v-3HfULK6xv8vVxRvvyb9dG0M2A-1HxPk9I';
+     const SUPABASE_ANON_KEY = 'sb_publishable_h6YR_dDHKOUNw0WI9ZFqxw_bsa_6Suj';
 
         if (window.supabase) {
             const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
