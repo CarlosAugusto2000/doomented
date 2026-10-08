@@ -9,8 +9,253 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=MedievalSharp&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Times New Roman', Times, serif;
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: default;
+        }
+
+      
+        .form-title, 
+        .form-label, 
+        .submit-btn,
+        .comments-title {
+            font-family: 'Jacquard 12', 'MedievalSharp', cursive;
+        }
+
+        .form-title {
+            font-size: 2.8rem;
+            color: #d8b4fe;
+            text-shadow: 0 0 10px #8a2be2;
+            margin-bottom: 25px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+      
+        .comment-form-container {
+            width: 100%;
+            max-width: 450px;
+            aspect-ratio: 1 / 1; 
+            background-color: #000000;
+            border: 2px solid #8a2be2;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+            margin-bottom: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            color: #e9d5ff;
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+            text-shadow: 0 0 5px #8a2be2;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background-color: #000000;
+            color: #ffffff;
+            border: 1px solid #8a2be2; 
+            padding: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #b066ff;
+            box-shadow: 0 0 8px rgba(138, 43, 226, 0.6);
+        }
+
+        .form-group textarea {
+            resize: none;
+            height: 90px;
+        }
+
+    
+        .submit-btn {
+            background-color: #6a0ded;
+            color: #ffffff;
+            border: 1px solid #a855f7;
+            padding: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.25s ease, box-shadow 0.25s ease;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            background-color: #9b4dff; 
+            box-shadow: 0 0 12px rgba(155, 77, 255, 0.6);
+        }
+
+        
+        .comments-section {
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .comments-title {
+            font-size: 2.2rem;
+            color: #d8b4fe;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #4c1d95;
+            padding-bottom: 5px;
+        }
+
+        .comment-card {
+            background-color: #050505;
+            border: 1px solid #4c1d95;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 0 8px rgba(138, 43, 226, 0.15);
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: #c084fc;
+        }
+
+        .comment-nickname {
+            font-family: 'Jacquard 12', cursive;
+            font-size: 1.3rem;
+        }
+
+        .comment-date {
+            color: #7e22ce;
+            font-size: 0.8rem;
+        }
+
+        .comment-body {
+            color: #e9d5ff;
+            line-height: 1.4;
+            word-break: break-word;
+        }
+    </style>
 </head>
 <body>
+    <div class="comment-form-container">
+        <h1 class="form-title">Send your message</h1>
+        <form id="comment-form">
+            <div class="form-group">
+                <label for="nickname" class="form-label">Nickname</label>
+                <input type="text" id="nickname" required placeholder="Your nickname">
+            </div>
+            <div class="form-group">
+                <label for="comment" class="form-label">Comment</label>
+                <textarea id="comment" required placeholder="Write your comment..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">comment</button>
+        </form>
+    </div>
+    <div class="comments-section">
+        <h2 class="comments-title">Comments</h2>
+        <div id="comments-list">
+        </div>
+    </div>
+    <script>
+        const SUPABASE_URL = 'https://rujcltpflugvsvqhvbft.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ1amNsdHBmdWd2c3ZxaHZsYmZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk0NDExMjcsImV4cCI6MjEwNTAxNzEyN30.FOqSayT0v-3HfULK6xv8vVxRvvyb9dG0M2A-1HxPk9I';
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        const form = document.getElementById('comment-form');
+        const commentsList = document.getElementById('comments-list');
+
+        async function fetchComments() {
+            const { data, error } = await supabase
+                .from('comments')
+                .select('*')
+                .order('created_at', { ascending: false });
+
+            if (error) {
+                console.error('Error fetching comments:', error);
+                return;
+            }
+
+            commentsList.innerHTML = '';
+            if (!data || data.length === 0) {
+                commentsList.innerHTML = '<p style="color: #a855f7;">No comments yet. Be the first!</p>';
+                return;
+            }
+
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'comment-card';
+
+                const dateFormatted = new Date(item.created_at).toLocaleDateString('pt-BR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+
+                card.innerHTML = `
+                    <div class="comment-header">
+                        <span class="comment-nickname">${escapeHtml(item.nickname)}</span>
+                        <span class="comment-date">${dateFormatted}</span>
+                    </div>
+                    <div class="comment-body">${escapeHtml(item.comment)}</div>
+                `;
+                commentsList.appendChild(card);
+            });
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const nickname = document.getElementById('nickname').value.trim();
+            const comment = document.getElementById('comment').value.trim();
+
+            if (!nickname || !comment) return;
+
+            const { error } = await supabase
+                .from('comments')
+                .insert([{ nickname, comment }]);
+
+            if (error) {
+                alert('Error sending comment: ' + error.message);
+            } else {
+                form.reset();
+                fetchComments();
+            }
+        });
+
+        fetchComments();
+    </script>
    <audio id="audio-sec1" src="re.mp3" loop></audio>
    <audio id="audio-sec2" src="re1.mp3" loop></audio>
 
