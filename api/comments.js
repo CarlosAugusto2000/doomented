@@ -76,4 +76,4 @@ export default async function handler(req, res) {
         console.error('Erro de conexão:', error);
         return res.status(500).json({ message: 'Falha na conexão com o Supabase: ' + error.message });
     }
-}
+
