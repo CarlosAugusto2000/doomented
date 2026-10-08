@@ -27,6 +27,8 @@ body {
 h1, h2, .form-title, .form-label, .submit-btn, .comments-title, .sidebar-title, .comment-nickname {
     font-family: 'Jacquard 12', 'MedievalSharp', cursive;
 
+}
+
 .comment-form-container {
     width: 100%;
     max-width: 450px;
@@ -327,4 +329,4 @@ h1, h2, .form-title, .form-label, .submit-btn, .comments-title, .sidebar-title, 
     .skull-gif {
         width: 28px;
     }
-}
+
