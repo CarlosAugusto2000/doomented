@@ -206,6 +206,21 @@ img.skull-gif {
 .gif-link {
     display: inline-block;
     cursor: pointer; 
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.gif-link img,
+.section-gif-container a img {
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6), 0 0 30px rgba(139, 0, 0, 0.4);
+    filter: drop-shadow(0 0 10px #ff0000);
+    transition: all 0.3s ease;
+}
+
+.gif-link:hover img,
+.section-gif-container a:hover img {
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.9), 0 0 50px rgba(255, 0, 0, 0.7);
+    filter: drop-shadow(0 0 20px #ff0000) brightness(1.2);
+    transform: scale(1.02);
 }
 
 .comment-form-container {
