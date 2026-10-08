@@ -18,7 +18,8 @@ body {
     color: #E6E6E6;
     font-family: 'Times New Roman', Times, serif;
     min-height: 100vh;
-    padding: 20px 10px;
+    padding: 0; 
+    margin: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -156,16 +157,16 @@ h1, h2, .form-title, .form-label, .submit-btn, .comments-title, .sidebar-title, 
 
 .page-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between; 
     align-items: flex-start; 
     width: 100%;
-    max-width: 1200px;
-    padding: 0 10px;
+    max-width: 100%; 
+    padding: 20px 0; 
     gap: 20px;
 }
 
 .sidebar {
-    width: 200px;
+    width: 220px; 
     background-color: rgba(0, 0, 0, 0.92);
     border: 1px solid #700000;
     padding: 15px 12px;
@@ -178,7 +179,6 @@ h1, h2, .form-title, .form-label, .submit-btn, .comments-title, .sidebar-title, 
     top: 10px;
     height: fit-content; 
 }
-
 .sidebar-title {
     color: #cc2222;
     font-size: 1.5rem;
@@ -186,6 +186,14 @@ h1, h2, .form-title, .form-label, .submit-btn, .comments-title, .sidebar-title, 
     text-shadow: 0px 0px 5px #ff0000;
     border-bottom: 1px solid #440000;
     padding-bottom: 5px;
+}
+
+.sidebar-left {
+    border-left: none; 
+}
+
+.sidebar-right {
+    border-right: none; 
 }
 
 .sidebar-nav a,
@@ -203,10 +211,9 @@ h1, h2, .form-title, .form-label, .submit-btn, .comments-title, .sidebar-title, 
     color: #ff4d4d;
     text-shadow: 0 0 6px #ff0000;
 }
-
 .main-content {
-    width: 760px;
-    flex: 0 1 760px;
+    flex: 1; 
+    max-width: 800px; 
     display: flex;
     flex-direction: column;
     gap: 30px; 
