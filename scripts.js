@@ -4,20 +4,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('comment-form');
     const commentsList = document.getElementById('comments-list');
 
-    const SUPABASE_URL = 'https://rujcltpflugvsvqhvlbft.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ1amNsdHBmdWd2c3ZxaHZsYmZ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODk0NDExMjcsImV4cCI6MjEwNTAxNzEyN30.FOqSayT0v-3HfULK6xv8vVxRvvyb9dG0M2A-1HxPk9I';
-
     async function fetchComments() {
         if (!commentsList) return;
 
         try {
-            const response = await fetch(`${SUPABASE_URL}/rest/v1/comments?select=*&order=created_at.desc`, {
-                method: 'GET',
-                headers: {
-                    'apikey': SUPABASE_ANON_KEY,
-                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                    'Content-Type': 'application/json'
-                }
+            const response = await fetch('/api/comments', {
+                method: 'GET'
             });
 
             if (!response.ok) {
@@ -83,13 +75,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             try {
-                const response = await fetch(`${SUPABASE_URL}/rest/v1/comments`, {
+                const response = await fetch('/api/comments', {
                     method: 'POST',
                     headers: {
-                        'apikey': SUPABASE_ANON_KEY,
-                        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                        'Content-Type': 'application/json',
-                        'Prefer': 'return=representation'
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({ nickname, comment })
                 });
@@ -110,6 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     fetchComments();
+
 
     const section1 = document.getElementById('section-1');
     const section2 = document.getElementById('section-2');
