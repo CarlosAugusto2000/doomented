@@ -18,14 +18,17 @@ document.addEventListener('DOMContentLoaded', () => {
                         .order('created_at', { ascending: false });
 
                     if (error) {
-                        console.error('Error fetching comments:', error);
+                        console.error('Erro ao buscar comentários:', error.message, error.details);
+                        if (commentsList) {
+                            commentsList.innerHTML = `<p style="color: #ff4d4d;">Erro ao carregar comentários: ${error.message}</p>`;
+                        }
                         return;
                     }
 
                     if (commentsList) {
                         commentsList.innerHTML = '';
                         if (!data || data.length === 0) {
-                            commentsList.innerHTML = '<p style="color: #a855f7;">No comments yet. Be the first!</p>';
+                            commentsList.innerHTML = '<p style="color: #a855f7;">Nenhum comentário ainda. Seja o primeiro!</p>';
                             return;
                         }
 
@@ -57,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             function escapeHtml(text) {
+                if (!text) return '';
                 const div = document.createElement('div');
                 div.textContent = text;
                 return div.innerHTML;
@@ -77,19 +81,22 @@ document.addEventListener('DOMContentLoaded', () => {
                             .insert([{ nickname, comment }]);
 
                         if (error) {
-                            alert('Error sending comment: ' + error.message);
+                            alert('Erro ao enviar comentário: ' + error.message);
+                            console.error(error);
                         } else {
                             form.reset();
                             fetchComments();
                         }
                     } catch (err) {
-                        alert('Network Error: Verifique a configuração de RLS/Políticas da tabela "comments" no painel do Supabase.');
+                        alert('Erro de rede ao conectar com o banco de dados.');
                         console.error(err);
                     }
                 });
             }
 
             fetchComments();
+        } else {
+            console.error('Biblioteca do Supabase não foi carregada no HTML.');
         }
     }
 
