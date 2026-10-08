@@ -1,7 +1,12 @@
 export default async function handler(req, res) {
+    // Permite chamadas de qualquer origem (CORS)
+    res.setHeader('Access-Control-Allow-Credentials', true);
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+    res.setHeader(
+        'Access-Control-Allow-Headers',
+        'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+    );
 
     if (req.method === 'OPTIONS') {
         return res.status(200).end();
@@ -13,6 +18,7 @@ export default async function handler(req, res) {
     try {
         if (req.method === 'GET') {
             const response = await fetch(`${SUPABASE_URL}/rest/v1/comments?select=*&order=created_at.desc`, {
+                method: 'GET',
                 headers: {
                     'apikey': SUPABASE_ANON_KEY,
                     'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
@@ -20,12 +26,28 @@ export default async function handler(req, res) {
                 }
             });
 
-            const data = await response.json();
-            return res.status(response.status).json(data);
+            const responseText = await response.text();
+            let data;
+            try {
+                data = JSON.parse(responseText);
+            } catch (e) {
+                return res.status(500).json({ message: 'Resposta inválida do Supabase: ' + responseText });
+            }
+
+            if (!response.ok) {
+                return res.status(response.status).json({ message: data.message || data.msg || 'Erro na API do Supabase' });
+            }
+
+            return res.status(200).json(data);
         }
 
         if (req.method === 'POST') {
-            const { nickname, comment } = req.body;
+            const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+            const { nickname, comment } = body || {};
+
+            if (!nickname || !comment) {
+                return res.status(400).json({ message: 'Apelido e comentário são obrigatórios.' });
+            }
 
             const response = await fetch(`${SUPABASE_URL}/rest/v1/comments`, {
                 method: 'POST',
@@ -38,12 +60,24 @@ export default async function handler(req, res) {
                 body: JSON.stringify({ nickname, comment })
             });
 
-            const data = await response.json();
-            return res.status(response.status).json(data);
+            const responseText = await response.text();
+            let data;
+            try {
+                data = JSON.parse(responseText);
+            } catch (e) {
+                return res.status(500).json({ message: 'Resposta inválida do Supabase ao salvar: ' + responseText });
+            }
+
+            if (!response.ok) {
+                return res.status(response.status).json({ message: data.message || data.msg || 'Erro ao guardar no Supabase' });
+            }
+
+            return res.status(200).json(data);
         }
 
         return res.status(405).json({ message: 'Método não permitido' });
     } catch (error) {
-        return res.status(500).json({ message: error.message });
+        console.error('Erro de servidor:', error);
+        return res.status(500).json({ message: `Erro ao comunicar com o Supabase: ${error.message}` });
     }
 }
