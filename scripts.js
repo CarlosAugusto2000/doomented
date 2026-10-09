@@ -1,5 +1,12 @@
-
 document.addEventListener('DOMContentLoaded', () => {
+
+    const SUPABASE_URL = 'https://rujcltpfugvsvqhvlbft.supabase.co';
+    const SUPABASE_ANON_KEY = 'sb_publishable_h6YR_dDHKOUNw0WI9ZFqxw_bsa_6Suj'; 
+
+    let supabase = null;
+    if (typeof window.supabase !== 'undefined') {
+        supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    }
 
     const form = document.getElementById('comment-form');
     const commentsList = document.getElementById('comments-list');
@@ -7,17 +14,21 @@ document.addEventListener('DOMContentLoaded', () => {
     async function fetchComments() {
         if (!commentsList) return;
 
-        try {
-            const response = await fetch('/api/comments', {
-                method: 'GET'
-            });
+        if (!supabase) {
+            console.error("Cliente do Supabase não foi carregado corretamente.");
+            return;
+        }
 
-            if (!response.ok) {
-                const errData = await response.json().catch(() => ({}));
-                throw new Error(errData.message || `Erro HTTP: ${response.status}`);
+        try {
+            const { data, error } = await supabase
+                .from('comments')
+                .select('*')
+                .order('created_at', { ascending: false });
+
+            if (error) {
+                throw new Error(error.message);
             }
 
-            const data = await response.json();
             commentsList.innerHTML = '';
 
             if (!data || data.length === 0) {
@@ -59,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return div.innerHTML;
     }
 
+    
     if (form) {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -74,18 +86,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            try {
-                const response = await fetch('/api/comments', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ nickname, comment })
-                });
+            if (!supabase) {
+                alert('Erro na configuração do Supabase.');
+                return;
+            }
 
-                if (!response.ok) {
-                    const errData = await response.json().catch(() => ({}));
-                    alert('Erro ao enviar comentário: ' + (errData.message || `Erro HTTP ${response.status}`));
+            try {
+                const { error } = await supabase
+                    .from('comments')
+                    .insert([{ nickname, comment }]);
+
+                if (error) {
+                    alert('Erro ao enviar comentário: ' + error.message);
                 } else {
                     alert('Comentário enviado com sucesso!');
                     form.reset();
