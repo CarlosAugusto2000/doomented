@@ -100,7 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchComments();
 
-    // Lógica das seções e dos áudios
     const section1 = document.getElementById('section-1');
     const section2 = document.getElementById('section-2');
     const gifLink = document.querySelector('.gif-link');
