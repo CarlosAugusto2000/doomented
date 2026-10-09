@@ -116,12 +116,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const section2 = document.getElementById('section-2');
     const gifLink = document.querySelector('.gif-link');
 
+    const musicLink = document.getElementById('link-music') || document.querySelector('.sidebar-nav a[href="#"]');
+
     const audio1 = document.getElementById('audio-sec1');
     const audio2 = document.getElementById('audio-sec2');
+    const audioMusic = document.getElementById('audio-music');
 
     function pauseAll() {
         if (audio1) audio1.pause();
         if (audio2) audio2.pause();
+        if (audioMusic) audioMusic.pause();
     }
 
     if (section1 && audio1) {
@@ -144,6 +148,21 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 pauseAll();
                 audio2.play().catch(error => {
+                    console.log("Ação do usuário necessária para tocar o áudio:", error);
+                });
+            }
+        });
+    }
+
+    if (musicLink && audioMusic) {
+        musicLink.addEventListener('click', (e) => {
+            e.preventDefault(); 
+
+            if (!audioMusic.paused) {
+                audioMusic.pause();
+            } else {
+                pauseAll();
+                audioMusic.play().catch(error => {
                     console.log("Ação do usuário necessária para tocar o áudio:", error);
                 });
             }
