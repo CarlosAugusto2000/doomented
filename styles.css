@@ -156,7 +156,7 @@ h1, h2, .form-title, .form-label, .submit-btn, .comments-title, .sidebar-title, 
 }
 
 .click-gif {
-    width: 100px;
+    width: 70px;
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 5px #ff0000);
