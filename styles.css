@@ -68,6 +68,30 @@ h1, h2, .form-title, .form-label, .submit-btn, .comments-title, .sidebar-title, 
     border-left: none;
     border-top: none;
 }
+.chat-container {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+.cbox-embed {
+    width: 100%;
+    border: 1px solid #700000;
+    background-color: #000000;
+    box-shadow: inset 0 0 8px rgba(255, 0, 0, 0.2), 0px 0px 10px rgba(255, 0, 0, 0.15);
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.cbox-embed iframe {
+    width: 100% !important;
+    height: 350px !important; 
+    display: block;
+    background: #000000;
+    border: none;
+}
 
 .sidebar-right {
     border-right: none;
@@ -132,7 +156,7 @@ h1, h2, .form-title, .form-label, .submit-btn, .comments-title, .sidebar-title, 
 }
 
 .click-gif {
-    width: 800px;
+    width: 300px;
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 5px #ff0000);
