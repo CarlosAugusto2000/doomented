@@ -70,7 +70,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return div.innerHTML;
     }
 
-    
     if (form) {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -112,7 +111,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchComments();
 
-   const doomentedTitle = document.getElementById('doomented-title');
+    // Referência aos elementos de áudio e gatilhos de música
+    const doomentedTitle = document.getElementById('doomented-title');
     const musicLink = document.getElementById('link-music') || document.querySelector('.sidebar-nav a[href="#"]');
     const audioMusic = document.getElementById('audio-music');
     const gifLink = document.querySelector('.gif-link');
@@ -128,10 +128,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Evento de clique no título Doomented (godsmack.mp3 com play/pause)
     if (doomentedTitle) {
         doomentedTitle.addEventListener('click', () => {
             toggleMusic();
         });
     }
 
+    // Evento de clique no menu "music" da sidebar
+    if (musicLink) {
+        musicLink.addEventListener('click', (e) => {
+            e.preventDefault(); 
+            toggleMusic();
+        });
+    }
 
+    if (gifLink) {
+        gifLink.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    }
+});
