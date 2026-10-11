@@ -132,7 +132,7 @@ h1, h2, .form-title, .form-label, .submit-btn, .comments-title, .sidebar-title, 
 }
 
 .click-gif {
-    width: 35px;
+    width: 80px;
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 5px #ff0000);
