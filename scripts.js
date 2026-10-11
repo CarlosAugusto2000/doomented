@@ -111,35 +111,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchComments();
 
-    // Referência aos elementos de áudio e gatilhos de música
     const doomentedTitle = document.getElementById('doomented-title');
-    const musicLink = document.getElementById('link-music') || document.querySelector('.sidebar-nav a[href="#"]');
     const audioMusic = document.getElementById('audio-music');
     const gifLink = document.querySelector('.gif-link');
 
-    function toggleMusic() {
-        if (!audioMusic) return;
-        if (!audioMusic.paused) {
-            audioMusic.pause();
-        } else {
-            audioMusic.play().catch(error => {
-                console.log("Ação do usuário necessária para tocar o áudio:", error);
-            });
-        }
-    }
-
-    // Evento de clique no título Doomented (godsmack.mp3 com play/pause)
-    if (doomentedTitle) {
+    if (doomentedTitle && audioMusic) {
         doomentedTitle.addEventListener('click', () => {
-            toggleMusic();
-        });
-    }
-
-    // Evento de clique no menu "music" da sidebar
-    if (musicLink) {
-        musicLink.addEventListener('click', (e) => {
-            e.preventDefault(); 
-            toggleMusic();
+            if (!audioMusic.paused) {
+                audioMusic.pause();
+            } else {
+                audioMusic.play().catch(error => {
+                    console.log("Ação do usuário necessária para tocar o áudio:", error);
+                });
+            }
         });
     }
 
