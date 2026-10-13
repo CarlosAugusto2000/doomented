@@ -381,7 +381,17 @@ img.skull-gif {
 }
 
 .title-container-3 {
-     justify-content: center;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.title-container-3 h1 {
+    color: #f0c8c8;
+    font-size: 3.2rem;
+    text-shadow: 2px 2px 8px #800000, 0 0 10px #ff0000;
+    letter-spacing: 2px;
+    text-align: center;
 }
 
 .quake-gallery-grid {
@@ -416,7 +426,13 @@ img.skull-gif {
     transform: scale(1.02);
 }
 
-
+@media (max-width: 768px) {
+    .quake-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .quake-gallery-bottom img {
+        width: 80% !important;
+    }
 
 @media (max-width: 1000px) {
     .page-container {
