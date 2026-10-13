@@ -416,13 +416,7 @@ img.skull-gif {
     transform: scale(1.02);
 }
 
-@media (max-width: 768px) {
-    .quake-gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .quake-gallery-bottom img {
-        width: 80% !important;
-    }
+
 
 @media (max-width: 1000px) {
     .page-container {
