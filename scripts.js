@@ -47,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 resultTitle.textContent = "Congratulations, you are the best!";
                 activeResultAudio = victoryAudio;
 
-                // Adiciona a imagem do Doomguy
                 const img = document.createElement('img');
                 img.src = 'doomguy.jpeg';
                 img.alt = 'Doomguy';
