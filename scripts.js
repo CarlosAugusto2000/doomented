@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let isPlaying = false;
     let activeResultAudio = null;
 
-
     function startAudio() {
         if (!isPlaying && bgAudio) {
             bgAudio.play().then(() => {
@@ -17,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-
+    
     window.addEventListener('click', startAudio);
     window.addEventListener('keydown', startAudio);
 
@@ -27,23 +26,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const resultImageContainer = document.getElementById('result-image-container');
     const btnBack = document.getElementById('btn-back');
 
+ 
     fateCards.forEach(card => {
         card.addEventListener('click', (event) => {
-
+          
             event.stopPropagation();
-
-            if (bgAudio) {
-                bgAudio.pause();
-                isPlaying = false;
-            }
 
             const choice = card.getAttribute('data-choice');
             resultImageContainer.innerHTML = ''; 
 
             if (choice === 'poorly') {
+               
                 resultTitle.textContent = "You choose poorly";
                 activeResultAudio = rangerAudio;
+
+                if (!isPlaying) startAudio();
+
             } else if (choice === 'best') {
+               
+                if (bgAudio) {
+                    bgAudio.pause();
+                    isPlaying = false;
+                }
+
                 resultTitle.textContent = "Congratulations, you are the best!";
                 activeResultAudio = victoryAudio;
 
@@ -54,24 +59,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 resultImageContainer.appendChild(img);
             }
 
-            resultScreen.classList.remove('hidden');
+       
+            if (resultScreen) {
+                resultScreen.classList.remove('hidden');
+            }
         });
     });
 
-    
-    resultScreen.addEventListener('click', (event) => {
-        
-        if (event.target === btnBack) return;
 
-        if (activeResultAudio) {
-            activeResultAudio.currentTime = 0; 
-            activeResultAudio.play().catch(error => {
-                console.log("Aguardando interação para áudio de resultado:", error);
-            });
-        }
-    });
+    if (resultScreen) {
+        resultScreen.addEventListener('click', (event) => {
+           
+            if (event.target === btnBack) return;
 
- 
+            if (activeResultAudio) {
+                activeResultAudio.currentTime = 0; 
+                activeResultAudio.play().catch(error => {
+                    console.log("Aguardando interação para áudio de resultado:", error);
+                });
+            }
+        });
+    }
+
+
     if (btnBack) {
         btnBack.addEventListener('click', (event) => {
             event.stopPropagation(); 
@@ -79,14 +89,14 @@ document.addEventListener('DOMContentLoaded', () => {
           
             resultScreen.classList.add('hidden');
 
-        
+         
             if (activeResultAudio) {
                 activeResultAudio.pause();
                 activeResultAudio.currentTime = 0;
                 activeResultAudio = null;
             }
 
-         
+           
             startAudio();
         });
     }
