@@ -163,6 +163,7 @@ body {
 
 
 
+
 .cards-grid {
     display: flex;
     gap: 24px;
@@ -197,5 +198,106 @@ body {
     transform: translateY(-10px);
     border-color: #A855F7;
     box-shadow: 0 10px 25px rgba(168, 85, 247, 0.4) inset 0 0 15px rgba (168, 85, 247, 0.2);
+}
+
+.result-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.result-screen.hidden {
+    display: none;
+}
+
+.red-white-title {
+    font-family: 'Jacquard 12', 'MedievalSharp', cursive;
+    font-size: 4rem;
+    font-weight: normal;
+    background: linear-gradient(180deg, #FFFFFF 0%, #FF4D4D 50%, #990000 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+    text-align: center;
+}
+
+.doomguy-img {
+    max-width: 320px;
+    width: 100%;
+    margin-top: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+}
+
+.btn-back {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    background: #3B0764;
+    color: #FFFFFF;
+    border: 1px solid #A855F7;
+    padding: 8px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'MedievalSharp', cursive;
+    transition: 0.3s;
+    z-index: 2001;
+}
+
+.btn-back:hover {
+    background: #7E22CE;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 10px 20px;
+    }
+
+    .logo-greetings {
+        font-size: 1.1rem;
+    }
+
+    .btn-friend {
+        font-size: 0.9rem;
+        padding: 6px 14px;
+    }
+
+    .main-title {
+        font-size: 3.2rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .cards-grid, .cards-fate-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .fate-card {
+        max-width: 140px;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .red-white-title {
+        font-size: 2.5rem;
+    }
+
+    .section::after {
+        display: none;
+    }
 }
 
