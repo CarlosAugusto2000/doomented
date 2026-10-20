@@ -1,20 +1,94 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const audio = document.getElementById('bg-music');
+    const bgAudio = document.getElementById('bg-music');
+    const rangerAudio = document.getElementById('ranger-audio');
+    const victoryAudio = document.getElementById('victory-audio');
+    
     let isPlaying = false;
+    let activeResultAudio = null;
+
 
     function startAudio() {
-        if (!isPlaying) {
-            audio.play().then(() => {
+        if (!isPlaying && bgAudio) {
+            bgAudio.play().then(() => {
                 isPlaying = true;
-             
-                window.removeEventListener('click', startAudio);
-                window.removeEventListener('keydown', startAudio);
             }).catch(error => {
                 console.log("Aguardando interação para reproduzir o áudio:", error);
             });
         }
     }
 
+
     window.addEventListener('click', startAudio);
     window.addEventListener('keydown', startAudio);
+
+    const fateCards = document.querySelectorAll('.fate-card');
+    const resultScreen = document.getElementById('result-screen');
+    const resultTitle = document.getElementById('result-title');
+    const resultImageContainer = document.getElementById('result-image-container');
+    const btnBack = document.getElementById('btn-back');
+
+    fateCards.forEach(card => {
+        card.addEventListener('click', (event) => {
+
+            event.stopPropagation();
+
+            if (bgAudio) {
+                bgAudio.pause();
+                isPlaying = false;
+            }
+
+            const choice = card.getAttribute('data-choice');
+            resultImageContainer.innerHTML = ''; 
+
+            if (choice === 'poorly') {
+                resultTitle.textContent = "You choose poorly";
+                activeResultAudio = rangerAudio;
+            } else if (choice === 'best') {
+                resultTitle.textContent = "Congratulations, you are the best!";
+                activeResultAudio = victoryAudio;
+
+                // Adiciona a imagem do Doomguy
+                const img = document.createElement('img');
+                img.src = 'doomguy.jpeg';
+                img.alt = 'Doomguy';
+                img.className = 'doomguy-img';
+                resultImageContainer.appendChild(img);
+            }
+
+            resultScreen.classList.remove('hidden');
+        });
+    });
+
+    
+    resultScreen.addEventListener('click', (event) => {
+        
+        if (event.target === btnBack) return;
+
+        if (activeResultAudio) {
+            activeResultAudio.currentTime = 0; 
+            activeResultAudio.play().catch(error => {
+                console.log("Aguardando interação para áudio de resultado:", error);
+            });
+        }
+    });
+
+ 
+    if (btnBack) {
+        btnBack.addEventListener('click', (event) => {
+            event.stopPropagation(); 
+
+          
+            resultScreen.classList.add('hidden');
+
+        
+            if (activeResultAudio) {
+                activeResultAudio.pause();
+                activeResultAudio.currentTime = 0;
+                activeResultAudio = null;
+            }
+
+         
+            startAudio();
+        });
+    }
 });
