@@ -5,6 +5,14 @@
 }
 
 body {
+    height: 100vh;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr) 250px;
+    grid-template-rows: 70px minmax(0, 1fr);
+    grid-template-areas:
+        "navbar navbar navbar"
+        "sidebar-left scroll-container sidebar-right";
     background-color: #000000;
     color: #FFFFFF;
     font-family: 'MedievalSharp', cursive;
@@ -12,7 +20,8 @@ body {
 }
 
 .navbar {
-    position: fixed;
+    grid-area: navbar;
+    position: relative;
     top: 0;
     left: 0;
     width: 100%;
@@ -24,11 +33,10 @@ body {
     z-index: 100;
     background-color: #000000;
     border-bottom: 1px solid #3b0764;
-    
 }
 
 .logo-greetings {
-    font-family: 'MedievalSharp' cursive;
+    font-family: 'MedievalSharp', cursive;
     font-size: 1.5rem;
     color: #A855F7;
     text-shadow: 0 0 8px rgba(168, 85, 247, 0.6);
@@ -54,25 +62,156 @@ body {
     color: #FF3333;
 }
 
+.sidebar {
+    min-height: 0;
+    padding: 18px 16px 30px;
+    overflow-y: auto;
+    background-color: #000000;
+    background-image: linear-gradient(180deg, rgba(59, 7, 100, 0.18) 0%, rgba(0, 0, 0, 0) 32%);
+    scrollbar-width: thin;
+    scrollbar-color: #6b21A8 #000000;
+    z-index: 90;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #000000;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #6b21A8;
+    border: 1px solid #3b0764;
+}
+
+.sidebar-left {
+    grid-area: sidebar-left;
+    border-right: 1px dashed rgba(139, 92, 246, 0.55);
+    box-shadow: inset -25px 0 45px -40px rgba(168, 85, 247, 0.7);
+}
+
+.sidebar-right {
+    grid-area: sidebar-right;
+    border-left: 1px dashed rgba(139, 92, 246, 0.55);
+    box-shadow: inset 25px 0 45px -40px rgba(168, 85, 247, 0.7);
+}
+
+.sidebar-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+}
+
+.sidebar-title {
+    font-family: 'Jacquard 12', 'MedievalSharp', cursive;
+    font-weight: normal;
+    font-size: 2rem;
+    line-height: 1;
+    text-align: center;
+    background: linear-gradient(180deg, #FFFFFF 0%, #D8B4FE 40%, #7E22CE 80%, #991B1B 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 12px rgba(168, 85, 247, 0.45);
+    padding-top: 4px;
+}
+
+.sidebar-divider {
+    border: none;
+    height: 1px;
+    margin: 14px 0 20px;
+    background: linear-gradient(to right,
+            transparent,
+            rgba(139, 92, 246, 0.8),
+            #A855F7,
+            rgba(139, 92, 246, 0.8),
+            transparent);
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.75);
+}
+
+.sidebar-fate-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.sidebar-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar-links a {
+    display: block;
+    font-family: 'MedievalSharp', cursive;
+    font-size: 1.05rem;
+    color: #C084FC;
+    text-decoration: none;
+    padding: 4px 0;
+    transition: color 0.2s ease, text-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.sidebar-links a:hover {
+    color: #FFFFFF;
+    text-shadow: 0 0 10px rgba(168, 85, 247, 0.8);
+    transform: translateX(4px);
+}
+
+.sidebar-placeholder {
+    margin-top: 10px;
+    padding: 16px 12px;
+    text-align: center;
+    font-family: 'MedievalSharp', cursive;
+    font-size: 1rem;
+    color: #A855F7;
+    opacity: 0.7;
+    border: 1px dashed rgba(139, 92, 246, 0.45);
+    border-radius: 8px;
+    box-shadow: inset 0 0 18px rgba(107, 33, 168, 0.2);
+}
+
 .scroll-container {
-    height: 100vh;
+    grid-area: scroll-container;
+    position: relative;
+    width: 100%;
+    min-height: 0;
+    height: 100%;
     overflow-y: scroll;
+    overflow-x: hidden;
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: #6b21A8 #000000;
+}
+
+.scroll-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+    background: #000000;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+    background-color: #6b21A8;
+    border: 1px solid #3b0764;
 }
 
 .section {
-    height: 100vh;
     width: 100%;
+    min-height: 100%;
     scroll-snap-align: start;
+    scroll-snap-stop: always;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 90px;
-    padding-bottom: 40px;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding: 40px 60px;
     background-color: #000000;
 }
 
@@ -98,7 +237,7 @@ body {
     background: linear-gradient(180deg, #FFFFFF 0%, #D8B4FE 40%, #7E22cE 80%, #991b1b 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 12px rgba(168, 85, 247, 0.4);     
+    text-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
 }
 
 .main-title {
@@ -118,53 +257,32 @@ body {
     line-height: 1.6;
 }
 
-.fate-container {
-    margin-top: 20px;
-}
-
-.sub-title-fate {
-    font-family: 'Jacquard 12', 'MedievalSharp', cursive;
-    font-size: 2.5rem;
-    background: linear-gradient(180deg, #FFFFFF 0%, #D8B4FE 40%, #7E22cE 80%, #991b1b 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 20px;
-}
-
-.cards-fate-grid {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    align-items: center;
-}
-
 .fate-card {
     background-color: #000000;
-    padding: 10px;
-    border-radius: 12px;
+    padding: 7px;
+    border-radius: 10px;
     border: 1px solid #3B0764;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    max-width: 180px;
+    width: 136px;
+    max-width: 136px;
+    box-shadow: 0 0 14px rgba(107, 33, 168, 0.3);
 }
 
 .fate-card-img {
     width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 7px;
     display: block;
 }
 
 .fate-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-6px);
     border-color: #A855F7;
     box-shadow: 0 10px 25px rgba(168, 85, 247, 0.5), 0 0 15px rgba(168, 85, 247, 0.3);
 }
 
-
-
-
-.cards-grid {
+.card-grid {
     display: flex;
     gap: 24px;
     justify-content: center;
@@ -172,14 +290,15 @@ body {
 }
 
 .card {
+    display: flex;
     flex: 1;
+    flex-direction: column;
     background-color: #000000;
     border: 1px solid #3B0764;
     padding: 30px;
     border-radius: 8px;
     text-align: left;
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    flex-direction: column;
 }
 
 .card-title {
@@ -197,7 +316,7 @@ body {
 .card:hover {
     transform: translateY(-10px);
     border-color: #A855F7;
-    box-shadow: 0 10px 25px rgba(168, 85, 247, 0.4) inset 0 0 15px rgba (168, 85, 247, 0.2);
+    box-shadow: 0 10px 25px rgba(168, 85, 247, 0.4), inset 0 0 15px rgba(168, 85, 247, 0.2);
 }
 
 .result-screen {
@@ -257,6 +376,84 @@ body {
     background: #7E22CE;
 }
 
+@media (max-width: 1100px) {
+    body {
+        grid-template-columns: 220px minmax(0, 1fr) 210px;
+    }
+
+    .sidebar {
+        padding: 16px 12px 24px;
+    }
+
+    .sidebar-title {
+        font-size: 1.7rem;
+    }
+
+    .fate-card {
+        width: 118px;
+        max-width: 118px;
+    }
+
+    .section {
+        padding: 40px;
+    }
+}
+
+@media (max-width: 900px) {
+    body {
+        display: block;
+        height: auto;
+        overflow-y: auto;
+        padding-top: 70px;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+    }
+
+    .sidebar-left {
+        width: 100%;
+        padding: 20px;
+        overflow: visible;
+        border-right: none;
+        border-bottom: 1px dashed rgba(139, 92, 246, 0.55);
+    }
+
+    .sidebar-right {
+        display: none;
+    }
+
+    .sidebar-fate-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+    }
+
+    .fate-card {
+        width: 120px;
+        max-width: 120px;
+    }
+
+    .scroll-container {
+        height: auto;
+        overflow: visible;
+        scroll-snap-type: none;
+    }
+
+    .section {
+        min-height: calc(100vh - 70px);
+        scroll-snap-align: none;
+        padding: 40px 20px;
+    }
+
+    .section:after {
+        display: none;
+    }
+}
+
 @media (max-width: 768px) {
     .navbar {
         padding: 10px 20px;
@@ -279,13 +476,9 @@ body {
         font-size: 2rem;
     }
 
-    .cards-grid, .cards-fate-grid {
+    .card-grid {
         flex-direction: column;
         align-items: center;
-    }
-
-    .fate-card {
-        max-width: 140px;
     }
 
     .card {
@@ -295,9 +488,4 @@ body {
     .red-white-title {
         font-size: 2.5rem;
     }
-
-    .section::after {
-        display: none;
-    }
 }
-
