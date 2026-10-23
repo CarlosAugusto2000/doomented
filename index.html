@@ -17,83 +17,99 @@
 
     <header class="navbar">
         <div class="logo-greetings">Greetings Mortal</div>
-        <a href="https://naoki321.neocities.org/" target="_blank" class="btn-friend">Our friend</a>
-        <main class="scroll-container">
+        <a href="https://naoki321.neocities.org/" target="_blank" rel="noopener" class="btn-friend">Our friend</a>
     </header>
 
-    <section class="section" id="section1">
-        <div class="section-content">
-            <h1 class="main-title">Doomented</h1>
-            <p class="para-text">
-                War Pigs!
-            </p>
-           <div class="fate-container">
-                    <h2 class="sub-title-fate">Choose your fate</h2>
-                    <div class="cards-fate-grid">
-                       
-                        <div class="fate-card" data-choice="poorly">
-                            <img src="carta.webp" alt="Carta do Destino" class="fate-card-img">
-                        </div>
+    <nav class="sidebar sidebar-left" aria-label="Choose your fate">
+        <div class="sidebar-panel">
+            <h2 class="sidebar-title">Choose your fate</h2>
+            <hr class="sidebar-divider">
 
-                 
-                        <div class="fate-card" data-choice="best">
-                            <img src="carta.webp" alt="Carta do Destino" class="fate-card-img">
-                        </div>
+            <div class="sidebar-fate-list">
+                <div class="fate-card" data-choice="poorly">
+                    <img src="carta.webp" alt="Carta do Destino" class="fate-card-img">
+                </div>
 
-                        <div class="fate-card" data-choice="poorly">
-                            <img src="carta.webp" alt="Carta do Destino" class="fate-card-img">
-                        </div>
-                        </div>
-                        </div>
-                        </div>          
-                      </section>
+                <div class="fate-card" data-choice="best">
+                    <img src="carta.webp" alt="Carta do Destino" class="fate-card-img">
+                </div>
 
-    <section class="section" id="section2">
-        <div class="section-content">
-            <h2 class="section-title">Read this, and be welcome</h2>
-
-         <div class="card-grid">
-  
-          <div class="card">
-            <h3 class="card-title">I walked...</h3>
-            <p class="card-text">
-                I could do nothing but walk, and then I saw me walking in front of myself. But, it wasn't really me.
-            </p>
-          </div>
-          
-          <div class="card">
-            <h3 class="card-title">Watch out</h3>
-            <p class="card-text">
-                The gap in the door... is a separate reality. The only me is me, are you sure the only you is you?
-            </p>
-          </div>
-
-          <div class="card">
-            <h3 class="card-title">I've been told you would be here</h3>
-            <p class="card-text">
-                If I would could you?
-            </p>
-          </div>
-            
-         </div>    
-
+                <div class="fate-card" data-choice="poorly">
+                    <img src="carta.webp" alt="Carta do Destino" class="fate-card-img">
+                </div>
+            </div>
         </div>
-    </section>
+    </nav>
 
-    <section class="section" id="section3">
-        <div class="section-content">
-            <h2 class="section-title">Building...</h2>
-        </div>
-    </section>
+    <main class="scroll-container">
+
+        <section class="section" id="section1">
+            <div class="section-content">
+                <h1 class="main-title">Doomented</h1>
+                <p class="para-text">
+                    War Pigs!
+                </p>
+            </div>
+        </section>
+
+        <section class="section" id="section2">
+            <div class="section-content">
+                <h2 class="section-title">Read this, and be welcome</h2>
+
+                <div class="card-grid">
+
+                    <div class="card">
+                        <h3 class="card-title">I walked...</h3>
+                        <p class="card-text">
+                            I could do nothing but walk, and then I saw me walking in front of myself. But, it wasn't really me.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="card-title">Watch out</h3>
+                        <p class="card-text">
+                            The gap in the door... is a separate reality. The only me is me, are you sure the only you is you?
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="card-title">I've been told you would be here</h3>
+                        <p class="card-text">
+                            If I would could you?
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="section3">
+            <div class="section-content">
+                <h2 class="section-title">Building...</h2>
+            </div>
+        </section>
+
     </main>
-    
-   <div id="result-screen" class="result-screen hidden">
+
+    <aside class="sidebar sidebar-right" aria-label="Friends">
+        <div class="sidebar-panel">
+            <h2 class="sidebar-title">Thinking...</h2>
+            <hr class="sidebar-divider">
+
+            <ul class="sidebar-links" id="friends-list"></ul>
+
+            <p class="sidebar-placeholder">Soon...</p>
+        </div>
+    </aside>
+
+    <div id="result-screen" class="result-screen hidden">
         <button id="btn-back" class="btn-back">← Voltar</button>
         <div class="result-content">
             <h1 id="result-title" class="red-white-title"></h1>
             <div id="result-image-container"></div>
         </div>
     </div>
+
     <script src="scripts.js"></script>
 </body>
 </html>
