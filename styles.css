@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 body.comments-page {
     height: auto;
     min-height: 100vh;
@@ -18,11 +19,12 @@ body.comments-page {
     max-width: 650px;
     margin: 20px auto 50px;
     background-color: #000000;
-    border: 1px solid #A855F7;
+    border: 1px solid #F97316; 
     padding: 40px;
     border-radius: 10px;
-    box-shadow: 0 0 30px rgba(168, 85, 247, 0.35), inset 0 0 20px rgba(107, 33, 168, 0.2);
+    box-shadow: 0 0 30px rgba(249, 115, 22, 0.35), inset 0 0 20px rgba(194, 65, 12, 0.2);
 }
+
 
 .form-title {
     font-family: 'Jacquard 12', 'MedievalSharp', cursive;
@@ -30,10 +32,10 @@ body.comments-page {
     font-size: 3rem;
     text-align: center;
     margin-bottom: 30px;
-    background: linear-gradient(180deg, #FFFFFF 0%, #D8B4FE 40%, #7E22CE 80%, #991B1B 100%);
+    background: linear-gradient(180deg, #FFFFFF 0%, #FFEDD5 40%, #EA580C 80%, #991B1B 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
+    text-shadow: 0 0 15px rgba(249, 115, 22, 0.6);
 }
 
 .form-group {
@@ -46,15 +48,15 @@ body.comments-page {
 .form-label {
     font-family: 'MedievalSharp', cursive;
     font-size: 1.2rem;
-    color: #D8B4FE;
-    text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+    color: #FED7AA; 
+    text-shadow: 0 0 8px rgba(249, 115, 22, 0.4);
 }
 
 .comment-form-container input[type="text"],
 .comment-form-container textarea {
     width: 100%;
     background-color: #000000;
-    border: 1px solid #3B0764;
+    border: 1px solid #7C2D12; 
     border-radius: 6px;
     padding: 12px 16px;
     color: #FFFFFF;
@@ -66,8 +68,8 @@ body.comments-page {
 .comment-form-container input[type="text"]:focus,
 .comment-form-container textarea:focus {
     outline: none;
-    border-color: #A855F7;
-    box-shadow: 0 0 12px rgba(168, 85, 247, 0.6);
+    border-color: #F97316;
+    box-shadow: 0 0 12px rgba(249, 115, 22, 0.6);
 }
 
 .comment-form-container textarea {
@@ -77,24 +79,24 @@ body.comments-page {
 
 .submit-btn {
     width: 100%;
-    background-color: #6b21A8;
+    background-color: #C2410C; 
     color: #FFFFFF;
     font-family: 'MedievalSharp', cursive;
     font-size: 1.2rem;
     padding: 14px;
-    border: 1px solid #A855F7;
+    border: 1px solid #F97316;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 0 12px rgba(107, 33, 168, 0.5);
+    box-shadow: 0 0 12px rgba(194, 65, 12, 0.5);
     text-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
     margin-top: 10px;
 }
 
 .submit-btn:hover {
-    background-color: #7E22CE;
+    background-color: #EA580C;
     transform: translateY(-3px);
-    box-shadow: 0 0 20px #A855F7;
+    box-shadow: 0 0 20px #F97316;
 }
 
 .comments-section {
@@ -108,10 +110,10 @@ body.comments-page {
     font-weight: normal;
     font-size: 2.5rem;
     margin-bottom: 20px;
-    background: linear-gradient(180deg, #FFFFFF 0%, #D8B4FE 40%, #7E22CE 80%, #991B1B 100%);
+    background: linear-gradient(180deg, #FFFFFF 0%, #FFEDD5 40%, #EA580C 80%, #991B1B 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
+    text-shadow: 0 0 12px rgba(249, 115, 22, 0.4);
 }
 
 #comments-list {
@@ -144,14 +146,14 @@ body {
     padding: 0 40px;
     z-index: 100;
     background-color: #000000;
-    border-bottom: 1px solid #3b0764;
+    border-bottom: 1px solid #7C2D12;
 }
 
 .logo-greetings {
     font-family: 'MedievalSharp', cursive;
     font-size: 1.5rem;
-    color: #A855F7;
-    text-shadow: 0 0 8px rgba(168, 85, 247, 0.6);
+    color: #F97316;
+    text-shadow: 0 0 8px rgba(249, 115, 22, 0.6);
 }
 
 .nav-links-center {
@@ -161,7 +163,7 @@ body {
 
 .nav-link-item {
     font-family: 'MedievalSharp', cursive;
-    color: #D8B4FE;
+    color: #FED7AA;
     text-decoration: none;
     font-size: 1rem;
     transition: color 0.3s ease, text-shadow 0.3s ease;
@@ -169,27 +171,27 @@ body {
 
 .nav-link-item:hover {
     color: #FFFFFF;
-    text-shadow: 0 0 10px #A855F7;
+    text-shadow: 0 0 10px #F97316;
 }
 
 
 .btn-comment {
     font-family: 'MedievalSharp', cursive;
     font-size: 1rem;
-    background-color: #6b21A8;
+    background-color: #C2410C;
     color: #FFFFFF;
     text-decoration: none;
     padding: 10px 22px;
-    border: 1px solid #A855F7;
+    border: 1px solid #F97316;
     border-radius: 6px;
     transition: all 0.3s ease;
-    box-shadow: 0 0 10px rgba(107, 33, 168, 0.5);
+    box-shadow: 0 0 10px rgba(194, 65, 12, 0.5);
 }
 
 .btn-comment:hover {
     transform: translateY(-3px);
-    background-color: #7E22CE;
-    box-shadow: 0 0 20px #A855F7;
+    background-color: #EA580C;
+    box-shadow: 0 0 20px #F97316;
 }
 
 
@@ -203,7 +205,7 @@ body {
     scroll-snap-type: y mandatory;
     scroll-behavior: smooth;
     scrollbar-width: thin;
-    scrollbar-color: #6b21A8 #000000;
+    scrollbar-color: #C2410C #000000;
 }
 
 .scroll-container::-webkit-scrollbar {
@@ -215,8 +217,8 @@ body {
 }
 
 .scroll-container::-webkit-scrollbar-thumb {
-    background-color: #6b21A8;
-    border: 1px solid #3b0764;
+    background-color: #C2410C;
+    border: 1px solid #7C2D12;
 }
 
 .section {
@@ -242,16 +244,16 @@ body {
     max-width: 580px;
     margin: 25px auto 0;
     background-color: #000000;
-    border: 1px solid #3B0764;
+    border: 1px solid #7C2D12;
     padding: 8px;
     border-radius: 8px;
-    box-shadow: 0 0 20px rgba(107, 33, 168, 0.3);
+    box-shadow: 0 0 20px rgba(194, 65, 12, 0.3);
     transition: all 0.3s ease;
 }
 
 .hero-image-container:hover {
-    border-color: #A855F7;
-    box-shadow: 0 0 25px rgba(168, 85, 247, 0.5);
+    border-color: #F97316;
+    box-shadow: 0 0 25px rgba(249, 115, 22, 0.5);
     transform: translateY(-4px);
 }
 
@@ -265,10 +267,10 @@ body {
 .main-title, .section-title, .card-title {
     font-family: 'Jacquard 12', 'MedievalSharp', cursive;
     font-weight: normal;
-    background: linear-gradient(180deg, #FFFFFF 0%, #D8B4FE 40%, #7E22CE 80%, #991b1b 100%);
+    background: linear-gradient(180deg, #FFFFFF 0%, #FFEDD5 40%, #EA580C 80%, #991b1b 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
+    text-shadow: 0 0 12px rgba(249, 115, 22, 0.4);
 }
 
 .main-title {
@@ -291,7 +293,7 @@ body {
 }
 
 .para-text {
-    color: #D8B4FE;
+    color: #FED7AA;
     font-size: 1.1rem;
     line-height: 1.6;
     font-family: 'MedievalSharp', cursive;
@@ -306,22 +308,22 @@ body {
 .hero-card {
     flex: 1;
     background-color: #000000;
-    border: 1px solid #3B0764;
+    border: 1px solid #7C2D12;
     padding: 24px;
     border-radius: 8px;
     transition: all 0.3s ease;
 }
 
 .hero-card:hover {
-    border-color: #A855F7;
-    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+    border-color: #F97316;
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
     transform: translateY(-5px);
 }
 
 .hero-card-title {
     font-family: 'Jacquard 12', 'MedievalSharp', cursive;
     font-size: 1.6rem;
-    color: #D8B4FE;
+    color: #FED7AA;
     margin-bottom: 12px;
 }
 
@@ -332,7 +334,6 @@ body {
     font-family: sans-serif;
 }
 
-
 .section-header-row {
     display: flex;
     justify-content: space-between;
@@ -341,7 +342,7 @@ body {
 }
 
 .section-top-link {
-    color: #A855F7;
+    color: #F97316;
     text-decoration: none;
     font-family: 'MedievalSharp', cursive;
     transition: color 0.3s;
@@ -349,7 +350,7 @@ body {
 
 .section-top-link:hover {
     color: #FFFFFF;
-    text-shadow: 0 0 8px #A855F7;
+    text-shadow: 0 0 8px #F97316;
 }
 
 .card-grid-3 {
@@ -360,7 +361,7 @@ body {
 .pillar-card {
     flex: 1;
     background-color: #000000;
-    border: 1px solid #3B0764;
+    border: 1px solid #7C2D12;
     padding: 30px;
     border-radius: 8px;
     position: relative;
@@ -368,8 +369,8 @@ body {
 }
 
 .pillar-card:hover {
-    border-color: #A855F7;
-    box-shadow: 0 10px 25px rgba(168, 85, 247, 0.4);
+    border-color: #F97316;
+    box-shadow: 0 10px 25px rgba(249, 115, 22, 0.4);
     transform: translateY(-5px);
 }
 
@@ -381,7 +382,7 @@ body {
 .pillar-number {
     display: block;
     font-size: 0.9rem;
-    color: #A855F7;
+    color: #F97316;
     margin-bottom: 8px;
 }
 
@@ -393,9 +394,9 @@ body {
 }
 
 .pillar-tags span {
-    background: rgba(59, 7, 100, 0.4);
-    border: 1px solid #3B0764;
-    color: #D8B4FE;
+    background: rgba(124, 45, 18, 0.4);
+    border: 1px solid #7C2D12;
+    color: #FED7AA;
     font-size: 0.75rem;
     padding: 4px 8px;
     border-radius: 4px;
@@ -403,7 +404,7 @@ body {
 
 .pillar-link {
     display: inline-block;
-    color: #A855F7;
+    color: #F97316;
     text-decoration: none;
     font-size: 0.95rem;
     margin-top: 10px;
@@ -412,7 +413,6 @@ body {
 .pillar-link:hover {
     color: #FFFFFF;
 }
-
 
 .section-split-layout {
     display: flex;
@@ -426,8 +426,8 @@ body {
 
 .method-box {
     margin-top: 30px;
-    background: rgba(107, 33, 168, 0.1);
-    border: 1px dashed rgba(168, 85, 247, 0.4);
+    background: rgba(194, 65, 12, 0.1);
+    border: 1px dashed rgba(249, 115, 22, 0.4);
     padding: 24px;
     border-radius: 8px;
 }
@@ -435,7 +435,7 @@ body {
 .method-title {
     font-family: 'Jacquard 12', 'MedievalSharp', cursive;
     font-size: 1.4rem;
-    color: #D8B4FE;
+    color: #FED7AA;
     margin-bottom: 16px;
 }
 
@@ -455,8 +455,8 @@ body {
 }
 
 .step-num {
-    background: #3B0764;
-    color: #D8B4FE;
+    background: #7C2D12;
+    color: #FED7AA;
     width: 24px;
     height: 24px;
     display: flex;
@@ -476,15 +476,15 @@ body {
 
 .feature-card {
     background-color: #000000;
-    border: 1px solid #3B0764;
+    border: 1px solid #7C2D12;
     padding: 24px;
     border-radius: 8px;
     transition: all 0.3s ease;
 }
 
 .feature-card:hover {
-    border-color: #A855F7;
-    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+    border-color: #F97316;
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.4);
     transform: translateY(-4px);
 }
 
@@ -496,7 +496,7 @@ body {
 .card-title-sm {
     font-family: 'Jacquard 12', 'MedievalSharp', cursive;
     font-size: 1.5rem;
-    color: #D8B4FE;
+    color: #FED7AA;
     margin-bottom: 8px;
 }
 
@@ -529,3 +529,6 @@ body {
         padding: 40px 20px;
     }
 }
+
+
+
